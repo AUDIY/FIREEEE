@@ -11,6 +11,7 @@ While [FIR_x2](https://github.com/AUDIY/FIR_x2) focused on 2Ã— oversampling, ðŸ”
 The core is designed for scalability and flexible integration: internal hardware resources such as RAM and ROM can be inferred from RTL or replaced with vendor-specific IP blocks, enabling optimized implementations across a wide range of FPGA platforms.
 
 ## Usage
+## FAQ
 ## License under CERN-OHL-P v2
 Copyright AUDIY 2026.
 
