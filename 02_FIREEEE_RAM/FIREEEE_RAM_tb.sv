@@ -3,9 +3,9 @@
 *
 * Testbench for FIREEEE_RAM.v
 *
-* Version: 0.01
+* Version: 0.02
 * Author : AUDIY
-* Date   : 2026/02/11
+* Date   : 2026/02/14
 *
 * License
 --------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ module FIREEEE_RAM_tb ();
     reg                                   RCLK        = 1'b0;
     reg     unsigned [(DATA_WIDTH - 1):0] EXPECTED    = '0;
 
-    // Instanciation
+    /* Instansiation */
     FIREEEE_RAM #(
         .DATA_WIDTH   (DATA_WIDTH   ),
         .ADDR_WIDTH   (ADDR_WIDTH   ),
@@ -73,25 +73,25 @@ module FIREEEE_RAM_tb ();
         CYCLE_COUNT = -4;
     end
 
-    // Clock generation
+    /* Clock generation */
     always #75 begin
 	        SYS_CLK = ~SYS_CLK;
         #25 RCLK    = ~RCLK;
         #25 CLK_I   = ~CLK_I;
     end
     
-    // Increment the cycle counter on the postive clock
+    /* Increment the cycle counter on the postive clock */
     always @(negedge SYS_CLK) begin
         CYCLE_COUNT = CYCLE_COUNT + 1;
         
-        // Allow 3 complete traversals of the memory address space
+        /* Allow 3 complete traversals of the memory address space */
         if (CYCLE_COUNT == 1023) begin
             $display("TEST : PASS");
             $finish;
         end
     end
 
-// Simulate the write port
+/* Simulate the write port */
 always @(negedge CLK_I) begin
 	// let some cycles go before starting the writing and reading
 	if (CYCLE_COUNT == -1) begin
@@ -109,7 +109,7 @@ always @(negedge CLK_I) begin
 	end
 end
 
-// Simulate the read port
+/* Simulate the read port */
 always @(negedge CLK_I) begin
 	// let some cycles go before starting the writing and reading
 	if (CYCLE_COUNT == -1) begin

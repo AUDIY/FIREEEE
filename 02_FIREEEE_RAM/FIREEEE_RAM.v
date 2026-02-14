@@ -3,9 +3,9 @@
 *
 * Simple Dual Port RAM (Single Clock) for FIREEEE
 *
-* Version: 0.01
+* Version: 0.02
 * Author : AUDIY
-* Date   : 2026/02/11
+* Date   : 2026/02/14
 *
 * Port
 *   Input
