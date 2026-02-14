@@ -3,9 +3,9 @@
 *
 * Testbench for FIREEEE_DCLK_EDGE_DET.v
 *
-* Version: 0.01
+* Version: 0.02
 * Author : AUDIY
-* Date   : 2026/02/11
+* Date   : 2026/02/14
 *
 * License
 --------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ module FIREEEE_DCLK_EDGE_DET_tb ();
     integer unsigned urandom = '0;
     integer signed   random  = '0;
 
-    // Instantiation
+    /* Instantiation */
     FIREEEE_DCLK_EDGE_DET #(
         .DATA_WIDTH(DATA_WIDTH),
         .ADDR_WIDTH(ADDR_WIDTH)
@@ -69,14 +69,14 @@ module FIREEEE_DCLK_EDGE_DET_tb ();
         #1000 $finish();
     end
 
-    // Clock Generation
+    /* Clock Generation */
     initial begin
         forever begin
             #1 CLK_I = ~CLK_I;
         end
     end
 
-    // Reset & Data Clock Generation
+    /* Reset & Data Clock Generation */
     always @(posedge CLK_I) begin
         CLK_COUNT <= CLK_COUNT + 1'b1;
 
@@ -90,7 +90,7 @@ module FIREEEE_DCLK_EDGE_DET_tb ();
         end
     end
 
-    // Random Data Generation
+    /* Random Data Generation */
     always @(negedge DCLK_I) begin
         random = $random();
         DATA_I <= {random[31], random[(DATA_WIDTH - 2):0]}; // Any Signed Data

@@ -3,8 +3,8 @@
 *
 * Data Clock Edge Detector for FIREEEE
 *
-* Version: 0.01
-* Date   : 2026/02/11
+* Version: 0.02
+* Date   : 2026/02/14
 * Author : AUDIY
 *
 * Port
@@ -67,11 +67,11 @@ module FIREEEE_DCLK_EDGE_DET #(
         DCLK1 <= DCLK_I;
     end
 
-    // Edge Flag generation.
+    /* Edge Flag generation. */
     assign POS_DET_W =   DCLK_I  & (~DCLK1);
     assign NEG_DET_W = (~DCLK_I) &   DCLK1 ;
 
-    // Positive Edge Count for Flag & Data Mute.
+    /* Positive Edge Count for Flag & Data Mute. */
     always @(posedge CLK_I) begin
         if (!N_RST_I) begin
             POS_COUNT <= {(ADDR_WIDTH){1'b0}};
@@ -84,7 +84,7 @@ module FIREEEE_DCLK_EDGE_DET #(
         end
     end
 
-    // Negative Edge Count for Flag & Data Mute.
+    /* Negative Edge Count for Flag & Data Mute. */
     always @(posedge CLK_I) begin
         if (!N_RST_I) begin
             NEG_COUNT <= {(ADDR_WIDTH){1'b0}};
@@ -97,13 +97,13 @@ module FIREEEE_DCLK_EDGE_DET #(
         end
     end
 
-    // Edge Flag
+    /* Edge Flag */
     always @(posedge CLK_I) begin
         POS_DET_R <= POS_DET_W;
         NEG_DET_R <= NEG_DET_W;
     end
 
-    // Data Mute
+    /* Data Mute */
     always @(posedge CLK_I) begin
         if (!N_RST_I || (~&POS_COUNT) || (~&NEG_COUNT)) begin
             DATA1 <= {(DATA_WIDTH){1'b0}};
@@ -112,7 +112,7 @@ module FIREEEE_DCLK_EDGE_DET #(
         end
     end
 
-    // Output Assign
+    /* Output Assign */
     assign DCLK_O    = DCLK1    ;
     assign DATA_O    = DATA1    ;
     assign POS_DET_O = POS_DET_R;
