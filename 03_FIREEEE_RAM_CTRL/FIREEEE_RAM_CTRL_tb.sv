@@ -3,9 +3,9 @@
 *
 * Testbench for FIREEEE_RAM_CTRL.v
 *
-* Version: 0.01
+* Version: 0.02
 * Author : AUDIY
-* Date   : 2026/02/14
+* Date   : 2026/02/15
 *
 * License
 --------------------------------------------------------------------------------
@@ -24,7 +24,7 @@
 -----------------------------------------------------------------------------*/
 `default_nettype none
 
-module FIREEEE_RAM_CTRL_tb #();
+module FIREEEE_RAM_CTRL_tb();
     
     timeunit 1ns / 1ps;
 
@@ -32,8 +32,8 @@ module FIREEEE_RAM_CTRL_tb #();
     localparam ADDR_WIDTH = 5;
 
     /* Input Signals */
-    reg CLK_I = 1'b0;
-    reg WEN_I = 1'b0;
+    reg CLK_I   = 1'b0;
+    reg WEN_I   = 1'b0;
     reg N_RST_I = 1'b0;
 
     /* Output Signals */
@@ -56,7 +56,7 @@ module FIREEEE_RAM_CTRL_tb #();
     );
 
     initial begin
-        $dumpfile("FIREEEE_RAM_CTRL_tb.vcd");
+        $dumpfile("FIREEEE_RAM_CTRL.vcd");
         $dumpvars(0, FIREEEE_RAM_CTRL_tb);
 
         N_RST_I = 1'b1;

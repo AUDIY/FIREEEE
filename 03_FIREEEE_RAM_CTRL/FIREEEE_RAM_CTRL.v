@@ -3,9 +3,9 @@
 *
 * RAM Controller for FIREEEE
 *
-* Version: 0.01
+* Version: 0.02
 * Author : AUDIY
-* Date   : 2026/02/14
+* Date   : 2026/02/15
 *
 * Port
 *   Input
@@ -71,7 +71,7 @@ module FIREEEE_RAM_CTRL #(
                 REN_R     <= 1'b1;
             end else begin
                 /* Read State */
-                RADDR_R <=  RADDR_R + 1'b1;
+                RADDR_R <= RADDR_R + 1'b1;
                 REN_R   <= 1'b1;
             end
         end
