@@ -3,9 +3,9 @@
 *
 * Testbench for FIREEEE_DCLK_EDGE_DET.v
 *
-* Version: 0.02
+* Version: 0.03
 * Author : AUDIY
-* Date   : 2026/02/14
+* Date   : 2026/02/15
 *
 * License
 --------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ module FIREEEE_DCLK_EDGE_DET_tb ();
     );
 
     initial begin
-        $dumpfile("FIREEEE_DCLK_EDGE_DET_tb.vcd");
+        $dumpfile("FIREEEE_DCLK_EDGE_DET.vcd");
         $dumpvars(0, FIREEEE_DCLK_EDGE_DET_tb);
 
         #1000 $finish();

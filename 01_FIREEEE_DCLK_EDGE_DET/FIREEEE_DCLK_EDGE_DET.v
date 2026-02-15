@@ -3,8 +3,8 @@
 *
 * Data Clock Edge Detector for FIREEEE
 *
-* Version: 0.02
-* Date   : 2026/02/14
+* Version: 0.03
+* Date   : 2026/02/15
 * Author : AUDIY
 *
 * Port
