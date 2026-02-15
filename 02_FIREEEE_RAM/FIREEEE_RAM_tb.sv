@@ -3,9 +3,9 @@
 *
 * Testbench for FIREEEE_RAM.v
 *
-* Version: 0.02
+* Version: 0.03
 * Author : AUDIY
-* Date   : 2026/02/14
+* Date   : 2026/02/15
 *
 * License
 --------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ module FIREEEE_RAM_tb ();
     );
 
     initial begin
-        $dumpfile("FIREEEE_RAM_tb.vcd");
+        $dumpfile("FIREEEE_RAM.vcd");
         $dumpvars(0, FIREEEE_RAM_tb);
 
         WDATA_I = 70;
