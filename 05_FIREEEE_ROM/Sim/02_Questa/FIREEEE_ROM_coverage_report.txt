@@ -1,0 +1,12 @@
+Coverage Report Summary Data by DU
+
+=================================================================================
+=== Design Unit: work.FIREEEE_ROM
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         50        34        16    68.00%
+
+
+Total Coverage By Design Unit (filtered view): 68.00%
+
