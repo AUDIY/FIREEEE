@@ -3,9 +3,9 @@
 *
 * Input Data RAM for FIREEEE
 *
-* Version: 0.01
+* Version: 0.02
 * Author : AUDIY
-* Date   : 2026/02/14
+* Date   : 2026/02/15
 *
 * Port
 *   Input

@@ -3,9 +3,9 @@
 *
 * Testbench for FIREEEE_DATA_RAM.v
 *
-* Version: 0.01
+* Version: 0.02
 * Author : AUDIY
-* Date   : 2026/02/14
+* Date   : 2026/02/15
 *
 * License
 --------------------------------------------------------------------------------
@@ -79,14 +79,14 @@ module FIREEEE_DATA_RAM_tb ();
     );
 
     initial begin
-        $dumpfile("FIREEEE_DATA_RAM_tb.vcd");
+        $dumpfile("FIREEEE_DATA_RAM.vcd");
         $dumpvars(0, FIREEEE_DATA_RAM_tb);
 
         if (fp != 0) begin
             $fclose(fp);
         end
 
-        fp = $fopen("./PCM_1kHz_44100fs_32bit.txt", "r");
+        fp = $fopen("../PCM_1kHz_44100fs_32bit.txt", "r");
 
         if (fp == 0) begin
             $display("ERROR: The file doesn't exist.");
