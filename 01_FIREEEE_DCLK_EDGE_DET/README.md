@@ -38,6 +38,7 @@ Data clock edge detector.
 |OUT_REG_EN      |Output Register Enable|1'b1           |
 
 ## Block Diagram
+![FIREEEE_DCLK_EDGE_DET_Block](./Diagrams/Block/FIREEEE_DCLK_EDGE_DET_Block.png)
 ## Timing Chart
 ### Input
 ### Output
