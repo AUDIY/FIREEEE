@@ -30,10 +30,10 @@ Data clock edge detector.
 |NEG_DET_O  |Negative Edge Flag|
 
 ## Parameters
-| Parameter name | Description |
-|:---------------|:------------|
-|DATA_WIDTH      ||
-|ADDR_WIDTH      ||
+| Parameter name |   Description   |
+|:---------------|:----------------|
+|DATA_WIDTH      |Data Bit Width   |
+|ADDR_WIDTH      |Address Bit Width|
 
 ## Block Diagram
 ## Timing Chart
