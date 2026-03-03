@@ -6,7 +6,7 @@
 ## Overview
 🔥**FIREEEE**🔥 is a configurable serial FIR filter engine for FPGA-based audio DSP applications and the successor to the [FIR_x2](https://github.com/AUDIY/FIR_x2) project.   
 
-While [FIR_x2](https://github.com/AUDIY/FIR_x2) focused on 2× oversampling, 🔥**FIREEEE**🔥 extends this functionality with support for standard unity-rate filtering as well as power-of-two oversampling (e.g., ×2, ×4, ×8, …) without decimation.  
+While [FIR_x2](https://github.com/AUDIY/FIR_x2) focused on x2 oversampling, 🔥**FIREEEE**🔥 extends this functionality with support for standard unity-rate filtering as well as power-of-two oversampling (e.g., ×2, ×4, ×8, …) without decimation.  
 
 The core is designed for scalability and flexible integration: internal hardware resources such as RAM and ROM can be inferred from RTL or replaced with vendor-specific IP blocks, enabling optimized implementations across a wide range of FPGA platforms.
 
