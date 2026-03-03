@@ -15,27 +15,27 @@ Data clock edge detector.
 
 ## Port Definition
 ### Input
-| Port name |         Description          |
-|:----------|:-----------------------------|
-|CLK_I      |Clock                         |
-|DCLK_I     |Data Clock                    |
-|DATA_I     |Data                          |
-|N_RST_I    |Synchronous Reset (Active LOW)|
+| Port name |   Description    |Synchronous / Asynchronous|Clock Domain|Active low|
+|:----------|:-----------------|:------------------------:|:----------:|:--------:|
+|CLK_I      |Clock             |-                         |-           |No        |
+|DCLK_I     |Data Clock        |Synchronous               |CLK_I       |No        |
+|DATA_I     |Data              |Synchronous               |CLK_I       |No        |
+|N_RST_I    |Synchronous Reset |Asynchronous              |-           |Yes       |
 
 ### Output
-| Port name |   Description    |
-|:----------|:-----------------|
-|DCLK_O     |Data Clock        |
-|DATA_O     |Data              |
-|POS_DET_O  |Positive Edge Flag|
-|NEG_DET_O  |Negative Edge Flag|
+| Port name |   Description    |Synchronous / Asynchronous|Clock Domain|Active low|
+|:----------|:-----------------|:------------------------:|:----------:|:--------:|
+|DCLK_O     |Data Clock        |Synchronous               |CLK_I       |No        |
+|DATA_O     |Data              |Synchronous               |CLK_I       |No        |
+|POS_DET_O  |Positive Edge Flag|Synchronous               |CLK_I       |No        |
+|NEG_DET_O  |Negative Edge Flag|Synchronous               |CLK_I       |No        |
 
 ## Parameters
 | Parameter name |     Description      | Default Value |
 |:---------------|:---------------------|:-------------:|
 |DATA_WIDTH      |Data Bit Width        |8              |
-|IN_REG_EN       |Input Register Enable |1'b1           |
-|OUT_REG_EN      |Output Register Enable|1'b1           |
+|IN_REG_EN       |Input Register Enable |1'b1 (Enable)  |
+|OUT_REG_EN      |Output Register Enable|1'b1 (Enable)  |
 
 ## Block Diagram
 Note: This diagram shows the schematic when IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.
