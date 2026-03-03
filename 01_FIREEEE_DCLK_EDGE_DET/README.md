@@ -7,10 +7,11 @@ Data clock edge detector.
 |1    |README.md  |Module Specification|
 
 ## Status
-| Item  |  Status  |
-|:------|:--------:|
-|Version|0.00      |
-|Date   |2026/03/04|
+|  Item  |  Status  |
+|:-------|:--------:|
+|Version |0.00      |
+|Date    |2026/03/04|
+|Verified|No        |
 
 ## Port Definition
 ### Input
