@@ -36,7 +36,7 @@ Input Data RAM
 |RAM_INIT_FILE   |RAM Initialization Data File Name      |"" (None)      |
 
 ## Block Diagram  
-TBD  
+![FIREEEE_DATA_RAM_Block](./Diagram/Block/FIREEEE_DATA_RAM_Block.png)
 ## Timing Chart
 TBD  
 ## Notes
@@ -44,3 +44,4 @@ TBD
 ## Version History
 ### 0.00
 Initial Release of the Specification.  
+
