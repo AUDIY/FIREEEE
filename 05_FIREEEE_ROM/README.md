@@ -15,7 +15,7 @@ Single-port ROM wrapper.
 
 ## Port Definition
 ### Input
-Some inputs may not take effect depending on the RAM used in combination with this module. 
+Some inputs may not take effect depending on the ROM used in combination with this module. 
 | Port name |   Description    |Synchronous / Asynchronous|Clock Domain|Active low|
 |:----------|:-----------------|:------------------------:|:----------:|:--------:|
 |CLK_I      |Clock             |-                         |-           |No        |
@@ -27,7 +27,7 @@ Some inputs may not take effect depending on the RAM used in combination with th
 |RDATA_O    |Read Data         |Synchronous               |CLK_I       |No        |
 
 ## Parameters
-Some parameters may not take effect depending on the RAM used in combination with this module.  
+Some parameters may not take effect depending on the ROM used in combination with this module.  
 | Parameter name |             Description               | Default Value |
 |:---------------|:--------------------------------------|:-------------:|
 |DATA_WIDTH      |Data Bit Width                         |8              |
@@ -40,8 +40,8 @@ Some parameters may not take effect depending on the RAM used in combination wit
 ## Timing Chart
 No timing chart in this module. Please see FIREEEE_COEF_ROM for actual operation.  
 ## Notes
-- Some inputs and parametes may not take effect depending on the RAM used in combination with this module.  
+- Some inputs and parametes may not take effect depending on the ROM used in combination with this module.  
 ## Version History
 ### 0.00
-
 Initial Release of the Specification.
+
