@@ -42,7 +42,7 @@ Some parameters may not take effect depending on the RAM used in combination wit
 ## Block Diagram  
 ![FIREEEE_RAM_Block](./Diagrams/Block/FIREEEE_RAM_Block.png)  
 ## Timing Chart
-- Please see FIREEEE_DATA_RAM.  
+No timing chart in this module. Please see [FIREEEE_DATA_RAM](../04_FIREEEE_DATA_RAM) for actual operation.  
 ## Notes
 - Some inputs and parametes may not take effect depending on the RAM used in combination with this module.  
 ## Version History
