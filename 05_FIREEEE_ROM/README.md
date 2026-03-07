@@ -36,11 +36,12 @@ Some parameters may not take effect depending on the RAM used in combination wit
 |ROM_INIT_FILE   |ROM Initialization File Name           |"initrom.hex"  |
 
 ## Block Diagram  
-TBD
+![FIREEEE_ROM_Block](./Diagram/Block/FIREEEE_ROM_Block.png)
 ## Timing Chart
 No timing chart in this module. Please see FIREEEE_COEF_ROM for actual operation.  
 ## Notes
 - Some inputs and parametes may not take effect depending on the RAM used in combination with this module.  
 ## Version History
 ### 0.00
+
 Initial Release of the Specification.
