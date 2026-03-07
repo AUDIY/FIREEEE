@@ -45,7 +45,7 @@ Some inputs may not take effect depending on the RAM used in combination with th
 - After that, RADDR_O is incremented by one on every CLK_I cycle until WEN_I becomes High again.
 - Unless a reset occurs or there is a configuration error, the value of RADDR_O at the time when WEN_I next becomes High will be one less than the value of WADDR_O.
 - In general, the number of addresses n is determined by the following equation:  
-n = (frequency of CLK_I) ÷ (frequency of DCLK_I).
+n = (frequency of CLK_I) ÷ ((frequency of DCLK_I) x (Oversampling Ratio)).
 ### Reset
 ![Reset](./Diagrams/Waveform/FIREEEE_RAM_CTRL_waveform_reset.png)  
 - When the reset becomes active (N_RST_I goes Low), WADDR_O and RADDR_O are both set to 0, and REN_O is also set to Low.
@@ -56,4 +56,5 @@ n = (frequency of CLK_I) ÷ (frequency of DCLK_I).
 ## Version History
 ### 0.00
 Initial Release of the Specification.  
+
 
