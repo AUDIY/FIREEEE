@@ -33,9 +33,10 @@ Single-port ROM controller.
 |ADDR_WIDTH      |Address Width                          |8 (0 - 255)    |
 
 ## Block Diagram  
-TBD  
+![FIREEEE_ROM_CTRL_Block](./Diagram/Block/FIREEEE_ROM_CTRL_Block.png)
 ## Timing Chart
 TBD    
 ## Version History
 ### 0.00
 Initial Release of the Specification.  
+
