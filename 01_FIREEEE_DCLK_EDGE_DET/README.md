@@ -20,7 +20,7 @@ Data clock edge detector.
 |CLK_I      |Clock             |-                         |-           |No        |
 |DCLK_I     |Data Clock        |Synchronous               |CLK_I       |No        |
 |DATA_I     |Data              |Synchronous               |CLK_I       |No        |
-|N_RST_I    |Synchronous Reset |Asynchronous              |-           |Yes       |
+|N_RST_I    |Synchronous Reset |Synchronous               |CLK_I       |Yes       |
 
 ### Output
 | Port name |   Description    |Synchronous / Asynchronous|Clock Domain|Active low|
