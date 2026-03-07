@@ -32,7 +32,7 @@ Some inputs may not take effect depending on the RAM used in combination with th
 ## Parameters  
 | Parameter name |             Description               | Default Value |
 |:---------------|:--------------------------------------|:-------------:|
-|ADDR_WIDTH      |Address Width                          |8              |
+|ADDR_WIDTH      |Address Width                          |8 (0 - 255)    |
 
 ## Block Diagram  
 ![FIREEEE_RAM_CTRL_Block](./Diagrams/Block/FIREEEE_RAM_CTRL_Block.png)
@@ -56,3 +56,4 @@ n = (frequency of CLK_I) ÷ (frequency of DCLK_I).
 ## Version History
 ### 0.00
 Initial Release of the Specification.  
+
