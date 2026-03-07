@@ -1,5 +1,5 @@
 # FIREEEE_RAM
-RAM Wrapper
+Single clock simple dual-port RAM wrapper.
 
 ## File List
 | No. | File name |    Description     |
@@ -15,6 +15,7 @@ RAM Wrapper
 
 ## Port Definition
 ### Input
+Some inputs may not take effect depending on the RAM used in combination with this module. 
 | Port name |   Description    |Synchronous / Asynchronous|Clock Domain|Active low|
 |:----------|:-----------------|:------------------------:|:----------:|:--------:|
 |CLK_I      |Clock             |-                         |-           |No        |
@@ -30,6 +31,7 @@ RAM Wrapper
 |RDATA_O    |Read Data         |Synchronous               |CLK_I       |No        |
 
 ## Parameters
+Some parameters may not take effect depending on the RAM used in combination with this module.  
 | Parameter name |             Description               | Default Value |
 |:---------------|:--------------------------------------|:-------------:|
 |DATA_WIDTH      |Data Bit Width                         |8              |
@@ -37,12 +39,12 @@ RAM Wrapper
 |OUT_REG_EN      |Output Register Enable                 |1'b0 (Disable) |
 |RAM_INIT_FILE   |RAM Initialization File Name (Optional)|"" (None)      |
 
-## Block Diagram
-TBD  
+## Block Diagram  
+![FIREEEE_RAM_Block](./Diagrams/Block/FIREEEE_RAM_Block.png)  
 ## Timing Chart
-TBD  
+- Please see FIREEEE_DATA_RAM.  
 ## Notes
-- TBD  
+- Some inputs and parametes may not take effect depending on the RAM used in combination with this module.  
 ## Version History
 ### 0.00
 Initial Release of the Specification.
