@@ -1,7 +1,7 @@
 # 🔥FIREEEE🔥
 🔥**FIREEEE** (**FIR** filter as **E**asily, **E**xpandable, **E**nhanceable and **E**mbedded) is the open-source Verilog module for implementing serial FIR filters to the FPGA.🔥  
   
-![Static Badge](https://img.shields.io/badge/status-under%20development-red)
+![Static Badge](https://img.shields.io/badge/status-Specification%20under%20development-red)
 
 ## Overview
 🔥**FIREEEE**🔥 is a configurable serial FIR filter engine for FPGA-based audio DSP applications and the successor to the [FIR_x2](https://github.com/AUDIY/FIR_x2) project.   
