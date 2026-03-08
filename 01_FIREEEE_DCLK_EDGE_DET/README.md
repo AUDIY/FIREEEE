@@ -7,11 +7,18 @@ Data clock edge detector.
 |1    |README.md  |Module Specification|
 
 ## Status
-|  Item  |  Status  |
-|:-------|:--------:|
-|Version |0.00      |
-|Date    |2026/03/04|
-|Verified|No        |
+|        Item        |  Status  |
+|:-------------------|:--------:|
+|Version             |0.01      |
+|Date                |2026/03/09|
+|Verified            |Yes       |
+|Real Machine Checked|No        |
+
+## Verified Methods
+- RTL simulation
+- Code coverage
+- Formal property check
+- SystemVerilog assertions
 
 ## Port Definition
 ### Input
@@ -20,7 +27,7 @@ Data clock edge detector.
 |CLK_I      |Clock             |-                         |-           |No        |
 |DCLK_I     |Data Clock        |Synchronous               |CLK_I       |No        |
 |DATA_I     |Data              |Synchronous               |CLK_I       |No        |
-|N_RST_I    |Synchronous Reset |Synchronous               |CLK_I       |Yes       |
+|N_RST_I    |Reset             |Synchronous / Asynchronous|CLK_I       |Yes       |
 
 ### Output
 | Port name |   Description    |Synchronous / Asynchronous|Clock Domain|Active low|
@@ -31,25 +38,34 @@ Data clock edge detector.
 |NEG_DET_O  |Negative Edge Flag|Synchronous               |CLK_I       |No        |
 
 ## Parameters
-| Parameter name |     Description      | Default Value |
-|:---------------|:---------------------|:-------------:|
-|DATA_WIDTH      |Data Bit Width        |8              |
-|IN_REG_EN       |Input Register Enable |1'b1 (Enable)  |
-|OUT_REG_EN      |Output Register Enable|1'b1 (Enable)  |
+| Parameter name |     Description      |   Default Value   |
+|:---------------|:---------------------|:-----------------:|
+|DATA_WIDTH      |Data Bit Width        |8                  |
+|RESET_EN        |Reset Enable          |1'b1 (Enable)      |
+|ASYNC_RESET_EN  |Reset Type            |1'b1 (Asynchronous)|
+|IN_REG_EN       |Input Register Enable |1'b1 (Enable)      |
+|OUT_REG_EN      |Output Register Enable|1'b1 (Enable)      |
 
 ## Block Diagram
-Note: This diagram shows the schematic when IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.
+Note: This diagram shows the schematic when RESET_EN == 1'b1, ASYNC_RESET_EN == 1'b1, IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.
 ![FIREEEE_DCLK_EDGE_DET_Block](./Diagrams/Block/FIREEEE_DCLK_EDGE_DET_Block.png)
+
 ## Timing Chart
-Note: This diagram shows the timing when IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.
+Note: This diagram shows the timing when RESET_EN == 1'b1, ASYNC_RESET_EN == 1'b1, IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.
 ![FIREEEE_DCLK_EDGE_DET_Waveform](./Diagrams/Waveform/FIREEEE_DCLK_EDGE_DET_waveform.png)
+
 ## Notes
 - This module asserts a flag for exactly one CLK_I cycle immediately after the rising edge and immediately after the falling edge of DCLK_O, respectively.
 - For the generation of POS_DET_O and NEG_DET_O, a minimum latency of one CLK_I cycle is introduced to both Data clock (DCLK_I & DCLK_O) and Data (DATA_I & DATA_O).
 - One additional register stage can optionally be inserted at both the input side and the output side for skew adjustment. When both stages are enabled, the maximum input-to-output latency becomes three CLK_I cycles.
-- N_RST_I is an active-low synchronous reset.
+- N_RST_I is an active-low reset.
+- If RESET_EN == 1'b0, ASYNC_RESET_EN is invalid.
 - The frequency of CLK_I must be at least twice the frequency of DCLK_I.
 - POS_DET_O and NEG_DET_O are mutually exclusive and will never be asserted simultaneously.
+
 ## Version History
 ### 0.00
-Initial Release of the Specification.
+- Initial Release of the Specification.
+### 0.01
+- Add module & related files. (2026/03/09)
+- Add simulation & verification results. (2026/03/09)
