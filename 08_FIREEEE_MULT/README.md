@@ -24,10 +24,10 @@ Data & Coefficient Multiplier
 |N_RST_I        |Synchronous Reset          |Synchronous               |CLK_I       |Yes       |
 
 ### Output
-| Port name |   Description    |Synchronous / Asynchronous|Clock Domain|Active low|
-|:----------|:-----------------|:------------------------:|:----------:|:--------:|
-|DCLKS_O    |Read Address      |Synchronous               |CLK_I       |No        |
-|MULT_O     |Multiplied Data   |Synchronous               |CLK_I       |No        |
+| Port name |    Description    |Synchronous / Asynchronous|Clock Domain|Active low|
+|:----------|:------------------|:------------------------:|:----------:|:--------:|
+|DCLKS_O    |Data & Other Clocks|Synchronous               |CLK_I       |No        |
+|MULT_O     |Multiplied Data    |Synchronous               |CLK_I       |No        |
 
 ## Parameters  
 | Parameter name |             Description               | Default Value |
@@ -38,12 +38,15 @@ Data & Coefficient Multiplier
 |IN_REG_EN       |Input Register Enable                  |1'b1 (Enable)  |
 |OUT_REG_EN      |Output Register Enable                 |1'b1 (Enable)  |
 
-## Block Diagram  
+## Block Diagram
+Note: This diagram shows the schematic when IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.  
 ![FIREEEE_MULT_Block](./Diagrams/Block/FIREEEE_MULT_Block.png)
 ## Timing Chart
+Note: This chart shows the schematic when IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.  
 ![FIREEEE_MULT_waveform_normal](./Diagrams/Waveform/FIREEEE_MULT_waveform_normal.png)
 ## Notes
 - TBD  
 ## Version History
 ### 0.00
+
 Initial Release of the Specification.  
