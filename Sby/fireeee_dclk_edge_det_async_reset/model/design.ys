@@ -1,0 +1,8 @@
+# running in fireeee_dclk_edge_det_async_reset/src/
+read -formal fireeee_dclk_edge_det_async_reset.v
+prep -top fireeee_dclk_edge_det_async_reset
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il
