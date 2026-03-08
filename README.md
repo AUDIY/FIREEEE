@@ -56,7 +56,7 @@ Yes, contributions are welcome!
 If you would like to improve any part of this repository, including the
 specification, please fork the repository and submit a pull request.
 
-Questions and bug reports are also valuable contributions. You can start by
+Questions and bug reports are also welcome. You can start by
 posting in the Q&A section under Discussions.
 ## License under CERN-OHL-P v2
 Copyright AUDIY 2026.
