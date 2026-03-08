@@ -2,9 +2,16 @@
 Data clock edge detector.
 
 ## File List
-| No. | File name |    Description     |
-|:---:|:----------|:-------------------|
-|1    |README.md  |Module Specification|
+| No. |             File name             |         Description         |
+|:---:|:----------------------------------|:----------------------------|
+|1    |README.md                          |Module Specification         |
+|2    |FIREEEE_DCLK_EDGE_DET.v            |Module                       |
+|3    |FIREEEE_DCLK_EDGE_DET_tb.sv        |Testbench                    |
+|4    |fireeee_dclk_edge_det_no_reset.v   |Instance (No Reset)          |
+|5    |fireeee_dclk_edge_det_sync_reset.v |Instance (Synchronous Reset) |
+|6    |fireeee_dclk_edge_det_async_reset.v|Instance (Asynchronous Reset)|
+|7    |Sim                                |Simulation Scripts           |
+|8    |Sby                                |SymbiYosys Configurations    |
 
 ## Status
 |        Item        |  Status  |
@@ -19,6 +26,9 @@ Data clock edge detector.
 - Code coverage
 - Formal property check
 - SystemVerilog assertions
+
+## Checked Devices
+- TBD
 
 ## Port Definition
 ### Input
