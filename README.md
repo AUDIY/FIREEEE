@@ -1,8 +1,8 @@
 # 🔥FIREEEE🔥
 ![status](https://img.shields.io/badge/status-Spec_design-yellow)
+![license](https://img.shields.io/badge/license-CERN--OHL--P_v2-blue)
 ![language](https://img.shields.io/badge/language-Verilog-blue)
-![verification](https://img.shields.io/badge/hardware-not_tested-lightgrey)
-![license](https://img.shields.io/badge/license-CERN--OHL--P_v2-blue)  
+![verification](https://img.shields.io/badge/hardware-not_tested-lightgrey)  
 🔥**FIREEEE** (**FIR** filter as **E**asily, **E**xpandable, **E**nhanceable and **E**mbedded) is the open-source Verilog module for implementing serial FIR filters to the FPGA.🔥  
 
 ## Overview
