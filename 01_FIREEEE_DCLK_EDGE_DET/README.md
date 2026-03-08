@@ -47,11 +47,11 @@ Data clock edge detector.
 |OUT_REG_EN      |Output Register Enable|1'b1 (Enable)      |
 
 ## Block Diagram
-Note: This diagram shows the schematic when RESET_EN == 1'b1, ASYNC_RESET_EN == 1'b1, IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.
+Note: This diagram shows the schematic when RESET_EN == 1'b1, ASYNC_RESET_EN == 1'b0, IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.
 ![FIREEEE_DCLK_EDGE_DET_Block](./Diagrams/Block/FIREEEE_DCLK_EDGE_DET_Block.png)
 
 ## Timing Chart
-Note: This diagram shows the timing when RESET_EN == 1'b1, ASYNC_RESET_EN == 1'b1, IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.
+Note: This diagram shows the timing when RESET_EN == 1'b1, ASYNC_RESET_EN == 1'b0, IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1.
 ![FIREEEE_DCLK_EDGE_DET_Waveform](./Diagrams/Waveform/FIREEEE_DCLK_EDGE_DET_waveform.png)
 
 ## Notes
