@@ -8,7 +8,10 @@
 ## Overview
 🔥**FIREEEE**🔥 is a configurable serial FIR filter implementation written in Verilog and a successor to the [FIR_x2](https://github.com/AUDIY/FIR_x2) project.
 
-The goal of this project is to provide a portable FIR filter architecture capable of supporting very long tap counts while remaining compatible with various FPGA toolchains.
+The goal of this project is to provide a portable FIR filter architecture capable of supporting very long tap counts while remaining compatible with a wide range of FPGA toolchains.  
+
+The project is currently under active development. The specification and
+the Verilog modules are being developed in parallel.
 
 ## Features
 
@@ -26,14 +29,14 @@ This is under construction.
 ## FAQ
 ### 1. What is a “serial” FIR filter?
 A serial FIR filter (also known as a single-MAC FIR filter) is an architecture
-that performs the multiply-accumulate operation sequentially using a single
+that performs multiply-accumulate operations sequentially using a single
 multiplier and adder per channel.
 
 This approach reduces hardware resource usage and is suitable for FPGA designs
 where arithmetic resources are limited.
 ### 2. What motivated this project?
 Many FIR filter implementations on GitHub use fully parallel multipliers and
-adders. While this allows high throughput, the maximum tap count is limited
+adders. While this allows high throughput, the number of taps is limited
 by hardware resources.
 
 Vendor-generated FIR IP cores often use serial architectures, but they are
