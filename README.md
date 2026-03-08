@@ -46,7 +46,7 @@ The main reason is usability.
 
 🔥**FIREEEE**🔥 aims to support both inferred and vendor-specific RAM/ROM
 implementations. Using CERN-OHL-W v2 would require modified design sources
-to be released under the same license when redistributed.
+to be released under the same license when the design is redistributed.
 
 To allow more flexible integration with different FPGA toolchains, this
 project adopts the more permissive CERN-OHL-P v2.
