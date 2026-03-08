@@ -1,20 +1,20 @@
 # Waveform Files
-*.vcd
-*.fst
-*.wlf
+**/*.vcd
+**/*.fst
+**/*.wlf
 
 # Verilog module
-*/ARESETN_SYNC.v
+**/ARESETN_SYNC.v
 
 # SymbiYosys
 /Sby/*
 !/Sby/*.sby
 
 # iverilog
-*.o
+**/*.o
 
 # Questa
 **/work
-+acc
-modelsim.ini
-transcript
+**/+acc
+**/modelsim.ini
+**/transcript
