@@ -2,16 +2,24 @@
 Single clock simple dual-port RAM wrapper.
 
 ## File List
-| No. | File name |    Description     |
-|:---:|:----------|:-------------------|
-|1    |README.md  |Module Specification|
+| No. | File name       |    Description     |
+|:---:|:----------------|:-------------------|
+|1    |README.md        |Module Specification|
+|2    |FIREEEE_RAM.v    |Module              |
+|3    |FIREEEE_RAM_tb.sv|Testbench           |
+|4    |Sim              |Simulation Scripts  |
 
 ## Status
-|  Item  |  Status  |
-|:-------|:--------:|
-|Version |0.00      |
-|Date    |2026/03/07|
-|Verified|No        |
+|        Item        |  Status  |
+|:-------------------|:--------:|
+|Version             |0.01      |
+|Date                |2026/03/10|
+|Verified            |Yes       |
+|Real Machine Checked|No        |
+
+## Verified Methods
+- RTL simulation
+- Code coverage
 
 ## Port Definition
 ### Input
@@ -34,17 +42,24 @@ Some inputs may not take effect depending on the RAM used in combination with th
 Some parameters may not take effect depending on the RAM used in combination with this module.  
 | Parameter name |             Description               | Default Value |
 |:---------------|:--------------------------------------|:-------------:|
-|DATA_WIDTH      |Data Bit Width                         |8              |
+|DATA_WIDTH      |Data Bit Width                         |32             |
 |ADDR_WIDTH      |Address Width                          |8              |
 |OUT_REG_EN      |Output Register Enable                 |1'b0 (Disable) |
 |RAM_INIT_FILE   |RAM Initialization File Name (Optional)|"" (None)      |
 
 ## Block Diagram  
 ![FIREEEE_RAM_Block](./Diagrams/Block/FIREEEE_RAM_Block.png)  
+
 ## Timing Chart
 No timing chart in this module. Please see [FIREEEE_DATA_RAM](../04_FIREEEE_DATA_RAM) for actual operation.  
+
 ## Notes
-- Some inputs and parametes may not take effect depending on the RAM used in combination with this module.  
+- Some inputs and parametes may not take effect depending on the RAM used in combination with this module.
+- You have to your own single clock simple dual-port RAM by define macro.
+
 ## Version History
 ### 0.00
 Initial Release of the Specification.
+### 0.01
+- Add module & related files. (2026/03/10)
+- Add simulation & verification results. (2026/03/10)
