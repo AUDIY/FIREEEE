@@ -16,8 +16,8 @@ Data clock edge detector.
 ## Status
 |        Item        |  Status  |
 |:-------------------|:--------:|
-|Version             |0.01      |
-|Date                |2026/03/09|
+|Version             |0.02      |
+|Date                |2026/03/10|
 |Verified            |Yes       |
 |Real Machine Checked|No        |
 
@@ -47,7 +47,7 @@ Data clock edge detector.
 ## Parameters
 | Parameter name |     Description      |   Default Value   |
 |:---------------|:---------------------|:-----------------:|
-|DATA_WIDTH      |Data Bit Width        |8                  |
+|DATA_BIT_WIDTH  |Data Bit Width        |32                 |
 |RESET_EN        |Reset Enable          |1'b1 (Enable)      |
 |ASYNC_RESET_EN  |Reset Type            |1'b1 (Asynchronous)|
 |IN_REG_EN       |Input Register Enable |1'b1 (Enable)      |
