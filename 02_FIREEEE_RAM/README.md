@@ -54,7 +54,8 @@ Some parameters may not take effect depending on the RAM used in combination wit
 No timing chart in this module. Please see [FIREEEE_DATA_RAM](../04_FIREEEE_DATA_RAM) for actual operation.  
 
 ## Notes
-- Some inputs and parametes may not take effect depending on the RAM used in combination with this module.  
+- Some inputs and parametes may not take effect depending on the RAM used in combination with this module.
+- You have to your own single clock simple dual-port RAM by define macro.
 
 ## Version History
 ### 0.00
