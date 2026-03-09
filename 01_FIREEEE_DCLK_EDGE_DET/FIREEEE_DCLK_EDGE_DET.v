@@ -3,9 +3,9 @@
 *
 * Data Clock Edge Detector for FIREEEE
 *
-* Version: 0.01
+* Version: 0.02
 * Author : AUDIY
-* Date   : 2026/03/09
+* Date   : 2026/03/10
 *
 * Port
 *   Input
@@ -23,7 +23,7 @@
 * Parameters
 *   DATA_BIT_WIDTH : Data bit width (Default: 32)
 *   RESET_EN       : Reset Enable (Default: 1'b1 = Enable)
-*   ASYNC_RESET    : Asynchronous Reset Enable (Default: 1'b1 = Asynchronous Reset)
+*   ASYNC_RESET_EN : Asynchronous Reset Enable (Default: 1'b1 = Asynchronous Reset)
 *   IN_REG_EN      : Input register enable (Default: 1'b1 = Enable)
 *   OUT_REG_EN     : Output register enable (Default: 1'b1 = Enable)
 *

@@ -3,9 +3,9 @@
 *
 * Testbench for FIREEEE_DCLK_EDGE_DET.v
 *
-* Version: 0.01
+* Version: 0.02
 * Author : AUDIY
-* Date   : 2026/03/09
+* Date   : 2026/03/10
 *
 * License
 --------------------------------------------------------------------------------
@@ -85,14 +85,14 @@ module FIREEEE_DCLK_EDGE_DET_tb ();
                 .IN_REG_EN     (IN_REG_EN     ),
                 .OUT_REG_EN    (OUT_REG_EN    )
             ) dut (
-                .CLK_I    (CLK_I       ),
-                .DCLK_I   (DCLK_I      ),
-                .DATA_I   (DATA_I      ),
-                .N_RST_I  (N_RST_SYNC_I),
-                .DCLK_O   (DCLK_O      ),
-                .DATA_O   (DATA_O      ),
-                .POS_DET_O(POS_DET_O   ),
-                .NEG_DET_O(NEG_DET_O   )
+                .CLK_I    (CLK_I          ),
+                .DCLK_I   (DCLK_I         ),
+                .DATA_I   (DATA_I         ),
+                .N_RST_I  (N_RST_SYNC_I[1]),
+                .DCLK_O   (DCLK_O         ),
+                .DATA_O   (DATA_O         ),
+                .POS_DET_O(POS_DET_O      ),
+                .NEG_DET_O(NEG_DET_O      )
             );
         end else begin: dut_asyncreset
             /* w/ Asynchronous Reset */
@@ -134,6 +134,19 @@ module FIREEEE_DCLK_EDGE_DET_tb ();
         #1000 $finish();
     end
 
+    /* Reset Generation */
+    initial begin
+        #1 N_RST_I = 1'b1;
+
+        forever begin
+            urandom = $urandom_range(200, 300);
+            #(urandom) N_RST_I = 1'b0;
+
+            urandom = $urandom_range(0, 20);
+            #(urandom) N_RST_I = 1'b1; 
+        end
+    end
+
     /* Clock Generation */
     initial begin
         forever begin
@@ -146,16 +159,6 @@ module FIREEEE_DCLK_EDGE_DET_tb ();
         CLK_COUNT <= CLK_COUNT + 1'b1;
 
         DCLK_I <= CLK_COUNT[2];
-
-        urandom <= $urandom_range(1000);
-    end
-
-    always @(negedge CLK_I) begin
-        if (urandom >= 950) begin
-            N_RST_I <= 1'b0;
-        end else begin
-            N_RST_I <= 1'b1;
-        end
     end
 
     /* Random Data Generation */
