@@ -7,8 +7,8 @@
 **/ARESETN_SYNC.v
 
 # SymbiYosys
-/Sby/*
-!/Sby/*.sby
+# /Sby/*
+# !/Sby/*.sby
 
 # iverilog
 **/*.o
