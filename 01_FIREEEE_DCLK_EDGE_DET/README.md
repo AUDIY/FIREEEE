@@ -25,10 +25,7 @@ Data clock edge detector.
 - RTL simulation
 - Code coverage
 - Formal property check
-- SystemVerilog assertions
-
-## Checked Devices
-- TBD
+- SystemVerilog assertion
 
 ## Port Definition
 ### Input
