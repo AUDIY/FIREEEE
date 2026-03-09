@@ -3,9 +3,9 @@
 *
 * Data Clock Edge Detector Instance (Asynchronous Reset Version.)
 *
-* Version: 0.01
+* Version: 0.02
 * Author : AUDIY
-* Date   : 2026/03/09
+* Date   : 2026/03/10
 *
 * Port
 *   Input
