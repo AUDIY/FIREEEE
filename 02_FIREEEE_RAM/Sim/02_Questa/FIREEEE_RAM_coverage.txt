@@ -1,0 +1,230 @@
+Coverage Report by file with details
+
+=================================================================================
+=== File: ../../FIREEEE_RAM.v
+=================================================================================
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         74        70         4    94.59%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../FIREEEE_RAM.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+         52                                  WEN_I           0           1       50.00 
+         54                             WDATA_I[0]           0           0        0.00 
+         55                                  REN_I           0           1       50.00 
+
+Total Node Count     =         37 
+Toggled Node Count   =         34 
+Untoggled Node Count =          3 
+
+Toggle Coverage      =      94.59% (70 of 74 bins)
+
+=================================================================================
+=== File: ../../SDPRAM_SINGLECLK.v
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         4         4         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for file ../../SDPRAM_SINGLECLK.v --
+
+------------------------------------IF Branch------------------------------------
+    88                                      1025     Count coming in to IF
+    88              1                       1024             if (WENABLE_I == 1'b1) begin
+                                               1     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    95                                      1025     Count coming in to IF
+    95              1                       1024             if (RENABLE_I == 1'b1) begin
+                                               1     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       8         8         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for file ../../SDPRAM_SINGLECLK.v --
+
+    1                                                /*----------------------------------------------------------------------------
+    2                                                * SDPRAM_SINGLECLK.v
+    3                                                *
+    4                                                * Simple Dual-Port RAM (Single Clock)
+    5                                                *
+    6                                                * Version: 1.00
+    7                                                * Author : AUDIY
+    8                                                * Date   : 2025/01/20
+    9                                                *
+    10                                               * Port
+    11                                               *   Input
+    12                                               *       CLK_I        : RAM Write/Read Clock Input
+    13                                               *       WADDR_I      : Write Address Input
+    14                                               *       WENABLE_I    : Write Enable Input
+    15                                               *       WDATA_I      : Stored Data Input
+    16                                               *       RADDR_I      : Read Address Input
+    17                                               *       RENABLE_I    : Read Enable Input
+    18                                               *
+    19                                               *   Output
+    20                                               *       RDATA_O      : Stored Data Output
+    21                                               *
+    22                                               *   Parameter
+    23                                               *       DATA_WIDTH   : DATA Bit Width
+    24                                               *       ADDR_WIDTH   : ROM Address Width
+    25                                               *       OUTPUT_REG   : Output Register Enable
+    26                                               *       RAM_INIT_FILE: RAM Initialization File
+    27                                               *
+    28                                               * License under CERN-OHL-P v2
+    29                                               --------------------------------------------------------------------------------
+    30                                               | Copyright AUDIY 2023 - 2026.                                                 |
+    31                                               |                                                                              |
+    32                                               | This source describes Open Hardware and is licensed under the CERN-OHL-P v2. |
+    33                                               |                                                                              |
+    34                                               | You may redistribute and modify this source and make products using it under |
+    35                                               | the terms of the CERN-OHL-P v2 (https:/cern.ch/cern-ohl).                    |
+    36                                               |                                                                              |
+    37                                               | This source is distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY,          |
+    38                                               | INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A         |
+    39                                               | PARTICULAR PURPOSE. Please see the CERN-OHL-P v2 for applicable conditions.  |
+    40                                               --------------------------------------------------------------------------------
+    41                                               *
+    42                                               -----------------------------------------------------------------------------*/
+    43                                               `default_nettype none
+    44                                               
+    45                                               module SDPRAM_SINGLECLK #(
+    46                                                   /* Parameter Definition */
+    47                                                   parameter DATA_WIDTH    = 8,
+    48                                                   parameter ADDR_WIDTH    = 9,
+    49                                                   parameter OUTPUT_REG    = "TRUE",
+    50                                                   parameter RAM_INIT_FILE = "RAMINIT.hex"
+    51                                               ) (
+    52                                                   /* Input Port Definiton */
+    53                                                   input wire                  CLK_I  ,
+    54                                                   input wire [ADDR_WIDTH-1:0] WADDR_I,
+    55                                                   input wire                  WENABLE_I,
+    56                                                   input wire [DATA_WIDTH-1:0] WDATA_I,
+    57                                                   input wire [ADDR_WIDTH-1:0] RADDR_I,
+    58                                                   input wire                  RENABLE_I,
+    59                                               
+    60                                                   /* Output Port Definition */
+    61                                                   output wire [DATA_WIDTH-1:0] RDATA_O
+    62                                               );
+    63                                               
+    64                                                   /* Local Parameters */
+    65                                                   localparam MEMORY_DEPTH = 2**ADDR_WIDTH;
+    66                                                   //localparam MAX_DATA     = (1 << ADDR_WIDTH) - 1; // Unused now.
+    67                                               
+    68                                                   /* Internal Wire/Register Definition */
+    69                                                   reg [DATA_WIDTH-1:0] RAM[MEMORY_DEPTH-1:0];
+    70              1                          1         reg [DATA_WIDTH-1:0] RDATA_REG_1P = {DATA_WIDTH{1'b0}};
+    71              1                          1         reg [DATA_WIDTH-1:0] RDATA_REG_2P = {DATA_WIDTH{1'b0}};
+    72                                               
+    73                                                   integer i;
+    74                                                   
+    75                                                   /* Memory Initialization */
+    76                                                   initial begin
+    77                                                       if (RAM_INIT_FILE != "") begin
+    78              1                          1                 $readmemh(RAM_INIT_FILE, RAM);
+    79                                                       end else begin
+    80                                                           for (i = 0; i < MEMORY_DEPTH; i = i + 1) begin
+    81                                                               RAM[i] = {DATA_WIDTH{1'b0}};
+    82                                                           end
+    83                                                       end
+    84                                                   end
+    85                                               
+    86                                                   /* Store Data */
+    87              1                       1025         always @ (posedge CLK_I) begin
+    88                                                       if (WENABLE_I == 1'b1) begin
+    89              1                       1024                 RAM[WADDR_I] <= WDATA_I;
+    90                                                       end
+    91                                                   end
+    92                                                   
+    93                                                   /* Output Register */
+    94              1                       1025         always @ (posedge CLK_I) begin
+    95                                                       if (RENABLE_I == 1'b1) begin
+    96              1                       1024                 RDATA_REG_1P <= RAM[RADDR_I];
+    97              1                       1024                 RDATA_REG_2P <= RDATA_REG_1P;
+    98                                                       end
+    99                                                   end
+    100                                              
+    101                                                  /* Output */
+    102                                                  generate
+    103                                                      if (OUTPUT_REG == "TRUE") begin : gen_reg2p
+    104                                                          assign RDATA_O = RDATA_REG_2P;
+    105                                                      end else begin : gen_reg1p
+    106                                                          assign RDATA_O = RDATA_REG_1P;
+    107                                                      end
+    108                                                  endgenerate
+    109                                              
+    110                                              endmodule
+    111                                              
+    112                                              `default_nettype wire
+    113                                              
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        170       102        68    60.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../SDPRAM_SINGLECLK.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+         55                              WENABLE_I           0           1       50.00 
+         56                             WDATA_I[0]           0           0        0.00 
+         58                              RENABLE_I           0           1       50.00 
+         73                                   i[9]           0           0        0.00 
+         73                                   i[8]           0           0        0.00 
+         73                                   i[7]           0           0        0.00 
+         73                                   i[6]           0           0        0.00 
+         73                                   i[5]           0           0        0.00 
+         73                                   i[4]           0           0        0.00 
+         73                                   i[3]           0           0        0.00 
+         73                                  i[31]           0           0        0.00 
+         73                                  i[30]           0           0        0.00 
+         73                                   i[2]           0           0        0.00 
+         73                                  i[29]           0           0        0.00 
+         73                                  i[28]           0           0        0.00 
+         73                                  i[27]           0           0        0.00 
+         73                                  i[26]           0           0        0.00 
+         73                                  i[25]           0           0        0.00 
+         73                                  i[24]           0           0        0.00 
+         73                                  i[23]           0           0        0.00 
+         73                                  i[22]           0           0        0.00 
+         73                                  i[21]           0           0        0.00 
+         73                                  i[20]           0           0        0.00 
+         73                                   i[1]           0           0        0.00 
+         73                                  i[19]           0           0        0.00 
+         73                                  i[18]           0           0        0.00 
+         73                                  i[17]           0           0        0.00 
+         73                                  i[16]           0           0        0.00 
+         73                                  i[15]           0           0        0.00 
+         73                                  i[14]           0           0        0.00 
+         73                                  i[13]           0           0        0.00 
+         73                                  i[12]           0           0        0.00 
+         73                                  i[11]           0           0        0.00 
+         73                                  i[10]           0           0        0.00 
+         73                                   i[0]           0           0        0.00 
+
+Total Node Count     =         85 
+Toggled Node Count   =         50 
+Untoggled Node Count =         35 
+
+Toggle Coverage      =      60.00% (102 of 170 bins)
+
+
+Total Coverage By File (code coverage only, filtered view): 90.16%
+
