@@ -28,4 +28,4 @@ onfinish stop
 
 run -all
 
-coverage report -output FIREEEE_DCLK_EDGE_DET_coverage_report.txt -srcfile=* -assert -directive -cvg -codeAll
+coverage report -output FIREEEE_DCLK_EDGE_DET_coverage.txt -srcfile=* -assert -directive -cvg -codeAll
