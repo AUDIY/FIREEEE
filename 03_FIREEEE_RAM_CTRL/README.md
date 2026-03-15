@@ -2,16 +2,30 @@
 Single clock simple dual-port RAM controller.
 
 ## File List
-| No. | File name |    Description     |
-|:---:|:----------|:-------------------|
-|1    |README.md  |Module Specification|
+| No. |          File name           |         Description         |
+|:---:|:-----------------------------|:----------------------------|
+|1    |README.md                     |Module Specification         |
+|2    |FIREEEE_RAM_CTRL.v            |Module                       |
+|3    |FIREEEE_RAM_CTRL_tb.sv        |Testbench                    |
+|4    |fireeee_ram_ctrl_no_reset.v   |Instance (No Reset)          |
+|5    |fireeee_ram_ctrl_sync_reset.v |Instance (Synchronous Reset) |
+|6    |fireeee_ram_ctrl_async_reset.v|Instance (Asynchronous Reset)|
+|7    |Sim                           |Simulation Scripts           |
+|8    |Sby                           |SymbiYosys Configurations    |
 
 ## Status
-|  Item  |  Status  |
-|:-------|:--------:|
-|Version |0.00      |
-|Date    |2026/03/07|
-|Verified|No        |
+|        Item        |  Status  |
+|:-------------------|:--------:|
+|Version             |0.01      |
+|Date                |2026/03/14|
+|Verified            |Yes       |
+|Real Machine Checked|No        |
+
+## Verified Methods
+- RTL simulation
+- Code coverage
+- Formal property check
+- SystemVerilog assertion
 
 ## Port Definition
 ### Input
@@ -20,7 +34,7 @@ Some inputs may not take effect depending on the RAM used in combination with th
 |:----------|:-----------------|:------------------------:|:----------:|:--------:|
 |CLK_I      |Clock             |-                         |-           |No        |
 |WEN_I      |Write Enable      |Synchronous               |CLK_I       |No        |
-|N_RST_I    |Synchronous Reset |Synchronous               |CLK_I       |Yes       |
+|N_RST_I    |Reset             |Synchronous / Asynchronous|CLK_I       |Yes       |
 
 ### Output
 | Port name |   Description    |Synchronous / Asynchronous|Clock Domain|Active low|
@@ -30,9 +44,11 @@ Some inputs may not take effect depending on the RAM used in combination with th
 |RADDR_O    |Read Address      |Synchronous               |CLK_I       |No        |
 
 ## Parameters  
-| Parameter name |             Description               | Default Value |
-|:---------------|:--------------------------------------|:-------------:|
-|ADDR_WIDTH      |Address Width                          |8 (0 - 255)    |
+| Parameter name | Description  |   Default Value   |
+|:---------------|:-------------|:-----------------:|
+|RESET_EN        |Reset Enable  |1'b1 (Enable)      |
+|ASYNC_RESET_EN  |Reset Type    |1'b1 (Asynchronous)|
+|ADDR_WIDTH      |Address Width |8 (Addr: 0 - 255)  |
 
 ## Block Diagram  
 ![FIREEEE_RAM_CTRL_Block](./Diagrams/Block/FIREEEE_RAM_CTRL_Block.png)
@@ -52,9 +68,12 @@ n = (frequency of CLK_I) ÷ ((frequency of DCLK_I) x (Oversampling Ratio)).
 - When the reset is deasserted, RADDR_O begins incrementing by one in the same manner as in normal operation. However, REN_O remains Low until WEN_I becomes High.
 - Normal operation starts when WEN_I becomes High for the first time after the reset is released.
 ## Notes
-- TBD  
+- Some parameters may not function depending on the RAM module used in combination with this module.
+- In principle, WEN_I should be connected to either POS_DET_O or NEG_DET_O of FIREEEE_DCLK_EDGE_DET. The signal applied to WEN_I must be asserted for only one CLK_I cycle. Operation with other types of signals has not been verified.
 ## Version History
 ### 0.00
-Initial Release of the Specification.  
-
+- Initial Release of the Specification.  
+### 0.01
+- Add module & related files. (2026/03/15)
+- Add simulation & verification results. (2026/03/15)
 
