@@ -17,6 +17,10 @@ Input Data RAM
 |Verified            |Yes       |
 |Real Machine Checked|No        |
 
+## Verified Methods
+- RTL simulation
+- Code coverage
+
 ## Port Definition
 ### Input
 | Port name |   Description    |Synchronous / Asynchronous|Clock Domain|Active low|
