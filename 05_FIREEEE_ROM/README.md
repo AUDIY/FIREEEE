@@ -17,6 +17,10 @@ Single-port ROM wrapper.
 |Verified            |Yes       |
 |Real Machine Checked|No        |
 
+## Verified Methods
+- RTL simulation
+- Code coverage
+
 ## Port Definition
 ### Input
 Some inputs may not take effect depending on the ROM used in combination with this module. 
