@@ -1,0 +1,14 @@
+[options]
+#mode bmc
+mode prove
+
+[engines]
+#smtbmc boolector
+abc pdr
+
+[script]
+read -formal fireeee_rom_ctrl_no_reset.v
+prep -top fireeee_rom_ctrl_no_reset
+
+[files]
+../fireeee_rom_ctrl_no_reset.v
