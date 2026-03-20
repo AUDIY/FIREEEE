@@ -1,0 +1,188 @@
+Coverage Report by file with details
+
+=================================================================================
+=== File: ../../FIREEEE_ROM_CTRL.v
+=================================================================================
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         18        18         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../FIREEEE_ROM_CTRL.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+
+Total Node Count     =          9 
+Toggled Node Count   =          9 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (18 of 18 bins)
+
+=================================================================================
+=== File: ../../fireeee_rom_ctrl_async_reset.v
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         4         4         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for file ../../fireeee_rom_ctrl_async_reset.v --
+
+------------------------------------IF Branch------------------------------------
+    51                                      5002     Count coming in to IF
+    51              1                          8             if (N_RST_I == 1'b0) begin
+    53              1                       4994             end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    54                                      4994     Count coming in to IF
+    54              1                         78                 if (DCLK_EDGE_DET_I == 1'b1) begin
+    56              1                       4916                 end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       5         5         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for file ../../fireeee_rom_ctrl_async_reset.v --
+
+    1                                                /*-----------------------------------------------------------------------------
+    2                                                * fireeee_rom_ctrl_async_reset.v
+    3                                                *
+    4                                                * Single Port ROM Controller instance (w/ Asynchronous Reset)
+    5                                                *
+    6                                                * Version: 0.01
+    7                                                * Author : AUDIY
+    8                                                * Date   : 2026/03/19
+    9                                                *
+    10                                               * Port
+    11                                               *   Input
+    12                                               *       CLK_I         : Clock
+    13                                               *       DCLK_POS_DET_I: Data clock positive edge detection
+    14                                               *       N_RST_I       : Asynchronous Reset (Active LOW)
+    15                                               *
+    16                                               *   Output
+    17                                               *       RADDR_O: Read address
+    18                                               *
+    19                                               * Parameter
+    20                                               *       ROM_ADDR_WIDTH: ROM Address Width
+    21                                               *
+    22                                               * License
+    23                                               --------------------------------------------------------------------------------
+    24                                               | Copyright AUDIY 2026.                                                        |
+    25                                               |                                                                              |
+    26                                               | This source describes Open Hardware and is licensed under the CERN-OHL-P v2. |
+    27                                               |                                                                              |
+    28                                               | You may redistribute and modify this source and make products using it under |
+    29                                               | the terms of the CERN-OHL-P v2 (https:/cern.ch/cern-ohl).                    |
+    30                                               |                                                                              |
+    31                                               | This source is distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY,          |
+    32                                               | INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A         |
+    33                                               | PARTICULAR PURPOSE. Please see the CERN-OHL-P v2 for applicable conditions.  |
+    34                                               --------------------------------------------------------------------------------
+    35                                               *
+    36                                               -----------------------------------------------------------------------------*/
+    37                                               `default_nettype none
+    38                                               
+    39                                               module fireeee_rom_ctrl_async_reset #(
+    40                                                   parameter ROM_ADDR_WIDTH = 8
+    41                                               ) (
+    42                                                   input  wire                          CLK_I          ,
+    43                                                   input  wire                          DCLK_EDGE_DET_I,
+    44                                                   input  wire                          N_RST_I        ,
+    45                                                   output wire [(ROM_ADDR_WIDTH - 1):0] RADDR_O
+    46                                               );
+    47                                               
+    48              1                          1         reg [(ROM_ADDR_WIDTH - 1):0] RADDR_R = {(ROM_ADDR_WIDTH){1'b0}};
+    49                                               
+    50              1                       5002         always @(posedge CLK_I or negedge N_RST_I) begin
+    51                                                       if (N_RST_I == 1'b0) begin
+    52              1                          8                 RADDR_R <= {(ROM_ADDR_WIDTH){1'b0}};
+    53                                                       end else begin
+    54                                                           if (DCLK_EDGE_DET_I == 1'b1) begin
+    55              1                         78                     RADDR_R <= {(ROM_ADDR_WIDTH){1'b0}};
+    56                                                           end else begin
+    57              1                       4916                     RADDR_R <= RADDR_R + 1'b1;
+    58                                                           end
+    59                                                       end
+    60                                                   end
+    61                                               
+    62                                                   assign RADDR_O = RADDR_R;
+    63                                               
+    64                                                   `ifdef FORMAL
+    65                                                       reg [(ROM_ADDR_WIDTH - 1):0] CLK_COUNT = {(ROM_ADDR_WIDTH){1'b0}};
+    66                                                       reg                          FORMAL_EN = 1'b0;
+    67                                               
+    68                                                       always @(posedge CLK_I) begin
+    69                                                           if (N_RST_I == 1'b0) begin
+    70                                                               CLK_COUNT <= {(ROM_ADDR_WIDTH){1'b0}};
+    71                                                               FORMAL_EN <= 1'b0;
+    72                                                           end else begin
+    73                                                               CLK_COUNT <= CLK_COUNT + 1'b1;
+    74                                                               FORMAL_EN <= 1'b1;
+    75                                               
+    76                                                               assume (DCLK_EDGE_DET_I == &CLK_COUNT);
+    77                                               
+    78                                                               if (FORMAL_EN) begin
+    79                                                                   if ($fell(DCLK_EDGE_DET_I)) begin
+    80                                                                       // (1). When DCLK_EDGE_DET_I falls, the value of RADDR_O must be set to 0.
+    81                                                                       formal_raddr_start: assert (
+    82                                                                           RADDR_O == {(ROM_ADDR_WIDTH){1'b0}}
+    83                                                                       );
+    84                                                                   end else begin
+    85                                                                       // (2). Otherwise, RADDR_O must increment by 1 from its value in the previous cycle.
+    86                                                                       formal_raddr_incr: assert (
+    87                                                                           RADDR_O == $past(RADDR_O, 1) + 1'b1
+    88                                                                       );
+    89                                                                   end
+    90                                                               end
+    91                                                           end
+    92                                                       end
+    93                                                   `endif // FORMAL
+    94                                                   
+    95                                               endmodule
+    96                                               
+    97                                               `default_nettype wire
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         30        30         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../fireeee_rom_ctrl_async_reset.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+
+Total Node Count     =         15 
+Toggled Node Count   =         15 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (30 of 30 bins)
+
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass     Vacuous    Disable    Attempt     Active Peak Active ATV
+                                                  Count        Count    Count      Count      Count       Count  Count          
+--------------------------------------------------------------------------------------------------------------------------------
+/FIREEEE_ROM_CTRL_tb/sva_raddr_start
+                     ../../FIREEEE_ROM_CTRL_tb.sv(142)
+                                                        0         78       4920          2       5000          0           1 on 
+/FIREEEE_ROM_CTRL_tb/sva_raddr_incr
+                     ../../FIREEEE_ROM_CTRL_tb.sv(146)
+                                                        0       4920         78          2       5000          0           1 on 
+
+Total Coverage By File (code coverage only, filtered view): 100.00%
+
