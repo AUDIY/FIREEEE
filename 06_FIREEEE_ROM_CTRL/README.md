@@ -50,10 +50,11 @@ Single-port ROM controller.
 ## Block Diagram  
 ![FIREEEE_ROM_CTRL_Block](./Diagram/Block/FIREEEE_ROM_CTRL_Block.png)
 ## Timing Chart
-TBD    
+![FIREEEE_ROM_CTRL_basic](./Diagram/Waveform/FIREEEE_ROM_CTRL_waveform_basic.png)
 ## Version History
 ### 0.00
 - Initial Release of the Specification.  
 ### 0.01
 - Add module & related files. (2026/03/21)
 - Add simulation & verification results. (2026/03/21)
+- Add Diagrams (2026/03/21)
