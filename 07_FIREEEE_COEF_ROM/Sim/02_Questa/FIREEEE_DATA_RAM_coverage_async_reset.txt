@@ -1,0 +1,520 @@
+Coverage Report by file with details
+
+=================================================================================
+=== File: ../../../05_FIREEEE_ROM/FIREEEE_ROM.v
+=================================================================================
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         34        31         3    91.17%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../../05_FIREEEE_ROM/FIREEEE_ROM.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+         48                             RADDR_I[7]           0           0        0.00 
+         49                             RDATA_O[7]           0           1       50.00 
+
+Total Node Count     =         17 
+Toggled Node Count   =         15 
+Untoggled Node Count =          2 
+
+Toggle Coverage      =      91.17% (31 of 34 bins)
+
+=================================================================================
+=== File: ../../../05_FIREEEE_ROM/SPROM.v
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       6         6         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for file ../../../05_FIREEEE_ROM/SPROM.v --
+
+    1                                                /*----------------------------------------------------------------------------
+    2                                                * SPROM.v
+    3                                                *
+    4                                                * Single-Port ROM
+    5                                                *
+    6                                                * Version: 1.00
+    7                                                * Author : AUDIY
+    8                                                * Date   : 2025/01/20
+    9                                                *
+    10                                               * Port
+    11                                               *   Input
+    12                                               *       CLK_I        : RAM Write/Read Clock Input
+    13                                               *       RADDR_I      : Read Address Input
+    14                                               *
+    15                                               *   Output
+    16                                               *       RDATA_O      : Stored Data Output
+    17                                               *
+    18                                               *   Parameter
+    19                                               *       DATA_WIDTH   : Stored DATA Width
+    20                                               *       ADDR_WIDTH   : ROM Address Width
+    21                                               *       OUTPUT_REG   : Output Register Enable
+    22                                               *       ROM_INIT_FILE: ROM Initialization File name
+    23                                               *
+    24                                               * License under CERN-OHL-P v2
+    25                                               --------------------------------------------------------------------------------
+    26                                               | Copyright AUDIY 2023 - 2026.                                                 |
+    27                                               |                                                                              |
+    28                                               | This source describes Open Hardware and is licensed under the CERN-OHL-P v2. |
+    29                                               |                                                                              |
+    30                                               | You may redistribute and modify this source and make products using it under |
+    31                                               | the terms of the CERN-OHL-P v2 (https:/cern.ch/cern-ohl).                    |
+    32                                               |                                                                              |
+    33                                               | This source is distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY,          |
+    34                                               | INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A         |
+    35                                               | PARTICULAR PURPOSE. Please see the CERN-OHL-P v2 for applicable conditions.  |
+    36                                               --------------------------------------------------------------------------------
+    37                                               *
+    38                                               -----------------------------------------------------------------------------*/
+    39                                               `default_nettype none
+    40                                               
+    41                                               module SPROM #(
+    42                                                   /* Parameter Definition */
+    43                                                   parameter DATA_WIDTH    = 16,
+    44                                                   parameter ADDR_WIDTH    = 8,
+    45                                                   parameter OUTPUT_REG    = "TRUE",
+    46                                                   parameter ROM_INIT_FILE = "initrom.hex"
+    47                                               ) (
+    48                                                   /* Input Port Definition */
+    49                                                   input  wire                  CLK_I,
+    50                                                   input  wire [ADDR_WIDTH-1:0] RADDR_I,
+    51                                               
+    52                                                   /* Output Port Definition */
+    53                                                   output wire [DATA_WIDTH-1:0] RDATA_O
+    54                                               );
+    55                                               
+    56                                                   /* Local Parameter Definition */
+    57                                                   localparam MEMORY_DEPTH = 2**ADDR_WIDTH;
+    58                                               
+    59                                                   /* Internal Wire/Register Definition */
+    60              1                          1         reg [DATA_WIDTH-1:0] RDATAO_REG_1P = {DATA_WIDTH{1'b0}};
+    61              1                          1         reg [DATA_WIDTH-1:0] RDATAO_REG_2P = {DATA_WIDTH{1'b0}};
+    62                                                   reg [DATA_WIDTH-1:0] ROM[MEMORY_DEPTH-1:0];
+    63                                               
+    64                                                   /* Memory Initialization */
+    65                                                   initial begin
+    66              1                          1             $readmemh(ROM_INIT_FILE, ROM);
+    67                                                   end
+    68                                               
+    69                                                   /* Output Register */
+    70              1                      16665         always @ (posedge CLK_I) begin
+    71              1                      16665             RDATAO_REG_1P <= ROM[RADDR_I];
+    72              1                      16665             RDATAO_REG_2P <= RDATAO_REG_1P;
+    73                                                   end
+    74                                               
+    75                                                   /* Output */
+    76                                                   generate
+    77                                                       if (OUTPUT_REG == "TRUE") begin : gen_reg2p
+    78                                                           assign RDATA_O = RDATAO_REG_2P;
+    79                                                       end else begin : gen_reg1p
+    80                                                           assign RDATA_O = RDATAO_REG_1P;
+    81                                                       end
+    82                                                   endgenerate
+    83                                               
+    84                                               endmodule
+    85                                               
+    86                                               `default_nettype wire
+    87                                               
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         66        61         5    92.42%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../../05_FIREEEE_ROM/SPROM.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+         50                             RADDR_I[7]           0           0        0.00 
+         53                             RDATA_O[7]           0           1       50.00 
+         60                       RDATAO_REG_1P[7]           0           1       50.00 
+         61                       RDATAO_REG_2P[7]           0           1       50.00 
+
+Total Node Count     =         33 
+Toggled Node Count   =         29 
+Untoggled Node Count =          4 
+
+Toggle Coverage      =      92.42% (61 of 66 bins)
+
+=================================================================================
+=== File: ../../../06_FIREEEE_ROM_CTRL/FIREEEE_ROM_CTRL.v
+=================================================================================
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         22        20         2    90.90%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../../06_FIREEEE_ROM_CTRL/FIREEEE_ROM_CTRL.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+         47                             RADDR_O[7]           0           0        0.00 
+
+Total Node Count     =         11 
+Toggled Node Count   =         10 
+Untoggled Node Count =          1 
+
+Toggle Coverage      =      90.90% (20 of 22 bins)
+
+=================================================================================
+=== File: ../../../06_FIREEEE_ROM_CTRL/fireeee_rom_ctrl_async_reset.v
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         4         4         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for file ../../../06_FIREEEE_ROM_CTRL/fireeee_rom_ctrl_async_reset.v --
+
+------------------------------------IF Branch------------------------------------
+    51                                     16669     Count coming in to IF
+    51              1                          8             if (N_RST_I == 1'b0) begin
+    53              1                      16661             end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    54                                     16661     Count coming in to IF
+    54              1                        130                 if (DCLK_EDGE_DET_I == 1'b1) begin
+    56              1                      16531                 end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       5         5         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for file ../../../06_FIREEEE_ROM_CTRL/fireeee_rom_ctrl_async_reset.v --
+
+    1                                                /*-----------------------------------------------------------------------------
+    2                                                * fireeee_rom_ctrl_async_reset.v
+    3                                                *
+    4                                                * Single Port ROM Controller instance (w/ Asynchronous Reset)
+    5                                                *
+    6                                                * Version: 0.01
+    7                                                * Author : AUDIY
+    8                                                * Date   : 2026/03/19
+    9                                                *
+    10                                               * Port
+    11                                               *   Input
+    12                                               *       CLK_I         : Clock
+    13                                               *       DCLK_POS_DET_I: Data clock positive edge detection
+    14                                               *       N_RST_I       : Asynchronous Reset (Active LOW)
+    15                                               *
+    16                                               *   Output
+    17                                               *       RADDR_O: Read address
+    18                                               *
+    19                                               * Parameter
+    20                                               *       ROM_ADDR_WIDTH: ROM Address Width
+    21                                               *
+    22                                               * License
+    23                                               --------------------------------------------------------------------------------
+    24                                               | Copyright AUDIY 2026.                                                        |
+    25                                               |                                                                              |
+    26                                               | This source describes Open Hardware and is licensed under the CERN-OHL-P v2. |
+    27                                               |                                                                              |
+    28                                               | You may redistribute and modify this source and make products using it under |
+    29                                               | the terms of the CERN-OHL-P v2 (https:/cern.ch/cern-ohl).                    |
+    30                                               |                                                                              |
+    31                                               | This source is distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY,          |
+    32                                               | INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A         |
+    33                                               | PARTICULAR PURPOSE. Please see the CERN-OHL-P v2 for applicable conditions.  |
+    34                                               --------------------------------------------------------------------------------
+    35                                               *
+    36                                               -----------------------------------------------------------------------------*/
+    37                                               `default_nettype none
+    38                                               
+    39                                               module fireeee_rom_ctrl_async_reset #(
+    40                                                   parameter ROM_ADDR_WIDTH = 8
+    41                                               ) (
+    42                                                   input  wire                          CLK_I          ,
+    43                                                   input  wire                          DCLK_EDGE_DET_I,
+    44                                                   input  wire                          N_RST_I        ,
+    45                                                   output wire [(ROM_ADDR_WIDTH - 1):0] RADDR_O
+    46                                               );
+    47                                               
+    48              1                          1         reg [(ROM_ADDR_WIDTH - 1):0] RADDR_R = {(ROM_ADDR_WIDTH){1'b0}};
+    49                                               
+    50              1                      16669         always @(posedge CLK_I or negedge N_RST_I) begin
+    51                                                       if (N_RST_I == 1'b0) begin
+    52              1                          8                 RADDR_R <= {(ROM_ADDR_WIDTH){1'b0}};
+    53                                                       end else begin
+    54                                                           if (DCLK_EDGE_DET_I == 1'b1) begin
+    55              1                        130                     RADDR_R <= {(ROM_ADDR_WIDTH){1'b0}};
+    56                                                           end else begin
+    57              1                      16531                     RADDR_R <= RADDR_R + 1'b1;
+    58                                                           end
+    59                                                       end
+    60                                                   end
+    61                                               
+    62                                                   assign RADDR_O = RADDR_R;
+    63                                               
+    64                                                   `ifdef FORMAL
+    65                                                       reg [(ROM_ADDR_WIDTH - 1):0] CLK_COUNT = {(ROM_ADDR_WIDTH){1'b0}};
+    66                                                       reg                          FORMAL_EN = 1'b0;
+    67                                               
+    68                                                       always @(posedge CLK_I) begin
+    69                                                           if (N_RST_I == 1'b0) begin
+    70                                                               CLK_COUNT <= {(ROM_ADDR_WIDTH){1'b0}};
+    71                                                               FORMAL_EN <= 1'b0;
+    72                                                           end else begin
+    73                                                               CLK_COUNT <= CLK_COUNT + 1'b1;
+    74                                                               FORMAL_EN <= 1'b1;
+    75                                               
+    76                                                               assume (DCLK_EDGE_DET_I == &CLK_COUNT);
+    77                                               
+    78                                                               if (FORMAL_EN) begin
+    79                                                                   if ($fell(DCLK_EDGE_DET_I)) begin
+    80                                                                       // (1). When DCLK_EDGE_DET_I falls, the value of RADDR_O must be set to 0.
+    81                                                                       formal_raddr_start: assert (
+    82                                                                           RADDR_O == {(ROM_ADDR_WIDTH){1'b0}}
+    83                                                                       );
+    84                                                                   end else begin
+    85                                                                       // (2). Otherwise, RADDR_O must increment by 1 from its value in the previous cycle.
+    86                                                                       formal_raddr_incr: assert (
+    87                                                                           RADDR_O == $past(RADDR_O, 1) + 1'b1
+    88                                                                       );
+    89                                                                   end
+    90                                                               end
+    91                                                           end
+    92                                                       end
+    93                                                   `endif // FORMAL
+    94                                                   
+    95                                               endmodule
+    96                                               
+    97                                               `default_nettype wire
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         38        34         4    89.47%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../../06_FIREEEE_ROM_CTRL/fireeee_rom_ctrl_async_reset.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+         45                             RADDR_O[7]           0           0        0.00 
+         48                             RADDR_R[7]           0           0        0.00 
+
+Total Node Count     =         19 
+Toggled Node Count   =         17 
+Untoggled Node Count =          2 
+
+Toggle Coverage      =      89.47% (34 of 38 bins)
+
+=================================================================================
+=== File: ../../FIREEEE_COEF_ROM.v
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         2         2         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for file ../../FIREEEE_COEF_ROM.v --
+
+------------------------------------IF Branch------------------------------------
+    112                                    16665     Count coming in to IF
+    112             1                          4                     if (N_RST_I == 1'b0) begin
+    115             1                      16661                     end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       7         7         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for file ../../FIREEEE_COEF_ROM.v --
+
+    1                                                /*-----------------------------------------------------------------------------
+    2                                                * FIREEEE_COEF_ROM.v
+    3                                                *
+    4                                                * Input Data RAM for FIREEEE
+    5                                                *
+    6                                                * Version: 0.01
+    7                                                * Author : AUDIY
+    8                                                * Date   : 2026/03/22
+    9                                                *
+    10                                               * Port
+    11                                               *   Input
+    12                                               *       CLK_I          : Clock
+    13                                               *       DCLK_EDGE_DET_I: Data clock positive edge detection
+    14                                               *       N_RST_I        : Reset (Active LOW)
+    15                                               *
+    16                                               *   Output
+    17                                               *       RADDR_O: Read Address
+    18                                               *       COEF_O : Filter Coefficient
+    19                                               *
+    20                                               * Parameter
+    21                                               *   RESET_EN       : Reset Enable (Default: 1'b1 = Enable)
+    22                                               *   ASYNC_RESET_EN : Asynchronous Reset Enable (Default: 1'b1 = Asynchronous Reset)
+    23                                               *   ROM_DATA_WIDTH : ROM data width
+    24                                               *   ROM_ADDR_WIDTH : ROM Address width
+    25                                               *   OUT_REG_EN     : Additional Output Register (Default: 1'b0 = Disable)
+    26                                               *   ROM_INIT_FILE  : ROM Initialization File
+    27                                               *
+    28                                               * License
+    29                                               --------------------------------------------------------------------------------
+    30                                               | Copyright AUDIY 2026.                                                        |
+    31                                               |                                                                              |
+    32                                               | This source describes Open Hardware and is licensed under the CERN-OHL-P v2. |
+    33                                               |                                                                              |
+    34                                               | You may redistribute and modify this source and make products using it under |
+    35                                               | the terms of the CERN-OHL-P v2 (https:/cern.ch/cern-ohl).                    |
+    36                                               |                                                                              |
+    37                                               | This source is distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY,          |
+    38                                               | INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A         |
+    39                                               | PARTICULAR PURPOSE. Please see the CERN-OHL-P v2 for applicable conditions.  |
+    40                                               --------------------------------------------------------------------------------
+    41                                               *
+    42                                               -----------------------------------------------------------------------------*/
+    43                                               `default_nettype none
+    44                                               
+    45                                               module FIREEEE_COEF_ROM #(
+    46                                                   parameter RESET_EN       = 1'b1,
+    47                                                   parameter ASYNC_RESET_EN = 1'b1,
+    48                                                   parameter ROM_DATA_WIDTH = 32,
+    49                                                   parameter ROM_ADDR_WIDTH = 9,
+    50                                                   parameter OUT_REG_EN     = 1'b0,
+    51                                                   parameter ROM_INIT_FILE  = "initrom.hex"
+    52                                               ) (
+    53                                                   input  wire                                 CLK_I,
+    54                                                   input  wire                                 DCLK_EDGE_DET_I,
+    55                                                   input  wire                                 N_RST_I,
+    56                                                   output wire        [(ROM_ADDR_WIDTH - 1):0] RADDR_O,
+    57                                                   output wire signed [(ROM_DATA_WIDTH - 1):0] COEF_O
+    58                                               );
+    59                                               
+    60                                                   /* Internal wire/reg */
+    61                                                   wire [(ROM_ADDR_WIDTH - 1):0] RADDR;
+    62              1                          1         reg  [(ROM_ADDR_WIDTH - 1):0] RADDR_REG1 = {(ROM_ADDR_WIDTH){1'b0}};
+    63              1                          1         reg  [(ROM_ADDR_WIDTH - 1):0] RADDR_REG2 = {(ROM_ADDR_WIDTH){1'b0}};
+    64                                               
+    65                                                   /* Instantiate FIREEEE_ROM_CTRL */
+    66                                                   // Please refer https://github.com/AUDIY/FIREEEE/tree/main/06_FIREEEE_ROM_CTRL for detail.
+    67                                                   FIREEEE_ROM_CTRL #(
+    68                                                       .RESET_EN      (RESET_EN      ),
+    69                                                       .ASYNC_RESET_EN(ASYNC_RESET_EN),
+    70                                                       .ROM_ADDR_WIDTH(ROM_ADDR_WIDTH)
+    71                                                   ) u_rom_ctrl (
+    72                                                       .CLK_I          (CLK_I          ),
+    73                                                       .DCLK_EDGE_DET_I(DCLK_EDGE_DET_I),
+    74                                                       .N_RST_I        (N_RST_I        ),
+    75                                                       .RADDR_O        (RADDR          )
+    76                                                   );
+    77                                               
+    78                                                   /* Instantiate FIREEEE_ROM */
+    79                                                   // Please refer https://github.com/AUDIY/FIREEEE/tree/main/05_FIREEEE_ROM for detail.
+    80                                                   FIREEEE_ROM #(
+    81                                                       .DATA_WIDTH   (ROM_DATA_WIDTH),
+    82                                                       .ADDR_WIDTH   (ROM_ADDR_WIDTH),
+    83                                                       .OUT_REG_EN   (OUT_REG_EN    ),
+    84                                                       .ROM_INIT_FILE(ROM_INIT_FILE )
+    85                                                   ) u_rom (
+    86                                                       .CLK_I  (CLK_I ),
+    87                                                       .RADDR_I(RADDR ),
+    88                                                       .RDATA_O(COEF_O)
+    89                                                   );
+    90                                               
+    91                                                   generate
+    92                                                       if (RESET_EN == 1'b0) begin : genblk_coefrom_noreset
+    93                                                           /* w/o Reset */
+    94                                                           always @(posedge CLK_I) begin
+    95                                                               RADDR_REG1 <= RADDR;
+    96                                                               RADDR_REG2 <= RADDR_REG1;
+    97                                                           end
+    98                                                       end else if (ASYNC_RESET_EN == 1'b0) begin : genblk_coefrom_syncreset
+    99                                                           /* w/ Synchronous Reset */
+    100                                                          always @(posedge CLK_I) begin
+    101                                                              if (N_RST_I == 1'b0) begin
+    102                                                                  RADDR_REG1 <= {(ROM_ADDR_WIDTH){1'b0}};
+    103                                                                  RADDR_REG2 <= {(ROM_ADDR_WIDTH){1'b0}};
+    104                                                              end else begin
+    105                                                                  RADDR_REG1 <= RADDR;
+    106                                                                  RADDR_REG2 <= RADDR_REG1; 
+    107                                                              end
+    108                                                          end
+    109                                                      end else begin : genblk_coefrom_asyncreset
+    110                                                          /* w/ Asynchronous Reset */
+    111             1                      16665                 always @(posedge CLK_I or negedge N_RST_I) begin
+    112                                                              if (N_RST_I == 1'b0) begin
+    113             1                          4                         RADDR_REG1 <= {(ROM_ADDR_WIDTH){1'b0}};
+    114             1                          4                         RADDR_REG2 <= {(ROM_ADDR_WIDTH){1'b0}};
+    115                                                              end else begin
+    116             1                      16661                         RADDR_REG1 <= RADDR;
+    117             1                      16661                         RADDR_REG2 <= RADDR_REG1; 
+    118                                                              end
+    119                                                          end
+    120                                                      end
+    121                                                  endgenerate
+    122                                              
+    123                                                  generate
+    124                                                      if (OUT_REG_EN == 1'b0) begin : genblk_oreg_0
+    125                                                          /* w/o Output Register */
+    126                                                          assign RADDR_O = RADDR_REG1;
+    127                                                      end else begin : genblk_oreg_1
+    128                                                          /* w/ Output Register */
+    129                                                          assign RADDR_O = RADDR_REG2;
+    130                                                      end
+    131                                                  endgenerate
+    132                                                  
+    133                                              endmodule
+    134                                              
+    135                                              `default_nettype wire
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         86        77         9    89.53%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../FIREEEE_COEF_ROM.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+         56                             RADDR_O[7]           0           0        0.00 
+         57                              COEF_O[7]           0           1       50.00 
+         61                               RADDR[7]           0           0        0.00 
+         62                          RADDR_REG1[7]           0           0        0.00 
+         63                          RADDR_REG2[7]           0           0        0.00 
+
+Total Node Count     =         43 
+Toggled Node Count   =         38 
+Untoggled Node Count =          5 
+
+Toggle Coverage      =      89.53% (77 of 86 bins)
+
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass     Vacuous    Disable    Attempt     Active Peak Active ATV
+                                                  Count        Count    Count      Count      Count       Count  Count          
+--------------------------------------------------------------------------------------------------------------------------------
+/FIREEEE_COEF_ROM_tb/sva_addr_reset
+                     ../../FIREEEE_COEF_ROM_tb.sv(161)
+                                                        0        130      16533          4      16667          0           1 on 
+
+Total Coverage By File (code coverage only, filtered view): 96.88%
+
