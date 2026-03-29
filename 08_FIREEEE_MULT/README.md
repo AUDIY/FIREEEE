@@ -32,7 +32,7 @@ Data & Coefficient Multiplier
 |CLKS_I         |Data & Other Clocks        |Synchronous               |CLK_I       |No        |
 |DATA_I         |Data from RAM              |Synchronous               |CLK_I       |No        |
 |COEF_I         |Filter Coefficient from ROM|Synchronous               |CLK_I       |No        |
-|N_RST_I        |Synchronous Reset          |Synchronous / Asynchronous|CLK_I       |Yes       |
+|N_RST_I        |Reset                      |Synchronous / Asynchronous|CLK_I       |Yes       |
 
 ### Output
 | Port name |    Description    |Synchronous / Asynchronous|Clock Domain|Active low|
