@@ -1,11 +1,11 @@
 {signal: [
   {name: 'CLK_I'  , wave: 'HlHlHlHlHlHlHlHl', node:''},
-  {name: 'DCLKS_I', wave: 'x.9.9.9.9.9.9.9.', node:'..C'},
+  {name: 'CLKS_I' , wave: 'x.9.9.9.9.9.9.9.', node:'..C'},
   {name: 'DATA_I' , wave: 'x.2.3.4.5.6.7.8.', node:'..a', data:['d1','d2','d3','d4','d5','d6','d7']},
   {name: 'COEF_I' , wave: 'x.2.3.4.5.6.7.8.', node:'..A', data:['c1','c2','c3','c4','c5','c6','c7']},
   {name: 'N_RST_I', wave: '1...............', node:''},
   {},
-  {name: 'DCLKS_O', wave: 'x.....9.9.9.9.9.', node:'......B'},
+  {name: 'CLKS_O' , wave: 'x.....9.9.9.9.9.', node:'......B'},
   {name: 'MULT_O' , wave: 'x.....2.3.4.5.6.', node:'......b', data: ['d1*c1','d2*c2','d3*c3','d4*c4','d5*c5','c6','c7']}
 ],
  edge: [
