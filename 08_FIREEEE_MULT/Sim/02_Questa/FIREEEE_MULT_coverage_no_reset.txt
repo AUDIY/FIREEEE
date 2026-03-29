@@ -1,0 +1,133 @@
+Coverage Report by file with details
+
+=================================================================================
+=== File: ../../FIREEEE_MULT.v
+=================================================================================
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         44        44         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../FIREEEE_MULT.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+
+Total Node Count     =         22 
+Toggled Node Count   =         22 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (44 of 44 bins)
+
+=================================================================================
+=== File: ../../fireeee_mult_no_reset.v
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      13        13         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for file ../../fireeee_mult_no_reset.v --
+
+    1                                                `default_nettype none
+    2                                                
+    3                                                module fireeee_mult_no_reset #(
+    4                                                    parameter CLKS_WIDTH     = 2,
+    5                                                    parameter DATA_BIT_WIDTH = 32,
+    6                                                    parameter COEF_BIT_WIDTH = 32,
+    7                                                    parameter IN_REG_EN      = 1'b1,
+    8                                                    parameter OUT_REG_EN     = 1'b1
+    9                                                ) (
+    10                                                   input  wire                                                  CLK_I,
+    11                                                   input  wire        [(CLKS_WIDTH                      - 1):0] CLKS_I,
+    12                                                   input  wire signed [(DATA_BIT_WIDTH                  - 1):0] DATA_I,
+    13                                                   input  wire signed [(COEF_BIT_WIDTH                  - 1):0] COEF_I,
+    14                                                   output wire        [(CLKS_WIDTH                      - 1):0] CLKS_O,
+    15                                                   output wire signed [(DATA_BIT_WIDTH + COEF_BIT_WIDTH - 1):0] MULT_O
+    16                                               );
+    17                                               
+    18                                                   localparam mult_bit_width = DATA_BIT_WIDTH + COEF_BIT_WIDTH;
+    19                                               
+    20                                                   wire        [(CLKS_WIDTH     - 1):0] CLKS_I_wire;
+    21                                                   wire signed [(DATA_BIT_WIDTH - 1):0] DATA_I_wire;
+    22                                                   wire signed [(COEF_BIT_WIDTH - 1):0] COEF_I_wire;
+    23                                               
+    24                                                   wire signed [(mult_bit_width - 1):0] MULT_wire;
+    25                                               
+    26                                                   wire        [(CLKS_WIDTH    - 1):0] CLKS_O_wire;
+    27                                                   wire signed [(mult_bit_width - 1):0] MULT_O_wire;
+    28                                               
+    29                                                   generate
+    30                                                       if (IN_REG_EN == 1'b1) begin: genblk_ireg1
+    31              1                          1                 reg        [(CLKS_WIDTH     - 1):0] CLKS_I_reg = {(CLKS_WIDTH    ){1'b0}};
+    32              1                          1                 reg signed [(DATA_BIT_WIDTH - 1):0] DATA_I_reg = {(DATA_BIT_WIDTH){1'b0}};
+    33              1                          1                 reg signed [(COEF_BIT_WIDTH - 1):0] COEF_I_reg = {(COEF_BIT_WIDTH){1'b0}};
+    34                                               
+    35              1                        832                 always @(posedge CLK_I) begin
+    36              1                        832                     CLKS_I_reg <= CLKS_I;
+    37              1                        832                     DATA_I_reg <= DATA_I;
+    38              1                        832                     COEF_I_reg <= COEF_I;
+    39                                                           end
+    40                                               
+    41                                                           assign CLKS_I_wire = CLKS_I_reg;
+    42                                                           assign DATA_I_wire = DATA_I_reg;
+    43                                                           assign COEF_I_wire = COEF_I_reg;
+    44                                                       end else begin: genblk_ireg0
+    45                                                           assign CLKS_I_wire = CLKS_I;
+    46                                                           assign DATA_I_wire = DATA_I;
+    47                                                           assign COEF_I_wire = COEF_I;
+    48                                                       end
+    49                                                   endgenerate
+    50                                               
+    51              1                        830         assign MULT_wire = DATA_I_wire * COEF_I_wire;
+    52                                               
+    53                                                   generate
+    54                                                       if (OUT_REG_EN == 1'b1) begin: genblk_oreg1
+    55              1                          1                 reg [(CLKS_WIDTH    - 1):0] CLKS_O_reg = {(CLKS_WIDTH   ){1'b0}};
+    56              1                          1                 reg signed [(mult_bit_width - 1):0] MULT_O_reg = {(mult_bit_width){1'b0}};
+    57                                               
+    58              1                        831                 always @(posedge CLK_I) begin
+    59              1                        831                     CLKS_O_reg <= CLKS_I_wire;
+    60              1                        831                     MULT_O_reg <= MULT_wire;
+    61                                                           end
+    62                                               
+    63                                                           assign CLKS_O_wire = CLKS_O_reg;
+    64                                                           assign MULT_O_wire = MULT_O_reg;
+    65                                                       end else begin: genblk_oreg0
+    66                                                           assign CLKS_O_wire = CLKS_I_wire;
+    67                                                           assign MULT_O_wire = MULT_wire;
+    68                                                       end
+    69                                                   endgenerate
+    70                                               
+    71                                                   assign CLKS_O = CLKS_O_wire;
+    72                                                   assign MULT_O = MULT_O_wire;
+    73                                                   
+    74                                               endmodule
+    75                                               
+    76                                               `default_nettype wire
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        138       138         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../fireeee_mult_no_reset.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+
+Total Node Count     =         69 
+Toggled Node Count   =         69 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (138 of 138 bins)
+
+
+Total Coverage By File (code coverage only, filtered view): 100.00%
+
