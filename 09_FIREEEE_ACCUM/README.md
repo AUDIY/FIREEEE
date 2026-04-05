@@ -52,7 +52,8 @@ Multiplied Data Accumulator
 |OUT_REG_EN      |Output Register Enable                 |1'b1 (Enable)      |
 
 ## Block Diagram
-TBD  
+Note: This diagram shows the schematic when IN_REG_EN == 1'b1 and OUT_REG_EN == 1'b1, and RESET_EN == 1'b1.  
+![FIREEEE_ACCUM_Block](./Diagrams/Block/FIREEEE_ACCUM_Block.png)
 ## Timing Chart
 TBD  
 ## Notes
