@@ -1,0 +1,250 @@
+Coverage Report by file with details
+
+=================================================================================
+=== File: ../../FIREEEE_ACCUM.v
+=================================================================================
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         46        46         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../FIREEEE_ACCUM.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+
+Total Node Count     =         23 
+Toggled Node Count   =         23 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (46 of 46 bins)
+
+=================================================================================
+=== File: ../../fireeee_accum_sync_reset.v
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        19        18         1    94.73%
+
+================================Branch Details================================
+
+Branch Coverage for file ../../fireeee_accum_sync_reset.v --
+
+------------------------------------IF Branch------------------------------------
+    41                                      1666     Count coming in to IF
+    41              1                          3                     if (N_RST_I == 1'b0) begin
+    45              1                       1663                     end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    64                                      1665     Count coming in to IF
+    64              1                          3             if (N_RST_I == 1'b0) begin
+    67              1                       1662             end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    74                                      1666     Count coming in to IF
+    74              1                          3             if (N_RST_I == 1'b0) begin
+    76              1                       1663             end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    77                                      1663     Count coming in to IF
+    77              1                        415                 if (edge_iwire == 1'b1) begin
+    79              1                       1248                 end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    86                                      1660     Count coming in to IF
+    86              1                          3             if (N_RST_I == 1'b0) begin
+    88              1                       1657             end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    89                                      1657     Count coming in to IF
+    89              1                        415                 if (edge_iwire == 1'b1) begin
+    97              1                       1242                 end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    90                                       415     Count coming in to CASE
+    91              1                        114                         2'b00  : accum_reg <= add_reg[(MULT_WIDTH - 1):0];
+    92              1                        102                         2'b01  : accum_reg <= {2'b00, {(MULT_WIDTH - 2){1'b1}}}; // Saturate to max value
+    93              1                        102                         2'b10  : accum_reg <= {2'b11, {(MULT_WIDTH - 2){1'b0}}}; // Saturate to min value
+    94              1                         97                         2'b11  : accum_reg <= add_reg[(MULT_WIDTH - 1):0];
+    95              1                    ***0***                         default: accum_reg <= add_reg[(MULT_WIDTH - 1):0];
+Branch totals: 4 hits of 5 branches = 80.00%
+
+------------------------------------IF Branch------------------------------------
+    110                                     1661     Count coming in to IF
+    110             1                          3                     if (N_RST_I == 1'b0) begin
+    113             1                       1658                     end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      38        37         1    97.36%
+
+================================Statement Details================================
+
+Statement Coverage for file ../../fireeee_accum_sync_reset.v --
+
+    1                                                `default_nettype none
+    2                                                
+    3                                                module fireeee_accum_sync_reset #(
+    4                                                    parameter CLKS_WIDTH   = 2 ,
+    5                                                    parameter MULT_WIDTH   = 32,
+    6                                                    parameter MARGIN_WIDTH = 8,
+    7                                                    parameter IN_REG_EN    = 1'b1,
+    8                                                    parameter OUT_REG_EN   = 1'b1
+    9                                                ) (
+    10                                                   input  wire                             CLK_I,
+    11                                                   input  wire                             DCLK_EDGE_DET_I,
+    12                                                   input  wire        [(CLKS_WIDTH - 1):0] CLKS_I,
+    13                                                   input  wire signed [(MULT_WIDTH - 1):0] MULT_I,
+    14                                                   input  wire                             N_RST_I,
+    15                                                   output wire        [(CLKS_WIDTH - 1):0] CLKS_O,
+    16                                                   output wire signed [(MULT_WIDTH - 1):0] ACCUM_O
+    17                                               );
+    18                                               
+    19                                                   localparam add_width = MULT_WIDTH + MARGIN_WIDTH;
+    20                                               
+    21                                                   wire signed [(MULT_WIDTH - 1):0] mult_iwire;
+    22                                                   wire        [(CLKS_WIDTH - 1):0] clks_iwire;
+    23                                                   wire                             edge_iwire;
+    24                                               
+    25              1                          1         reg signed [(add_width  - 1):0] add_reg   = {(add_width){1'b0}};
+    26              1                          1         reg signed [(MULT_WIDTH - 1):0] accum_reg = {(MULT_WIDTH){1'b0}};
+    27              1                          1         reg signed [(CLKS_WIDTH - 1):0] clks_reg1 = {(CLKS_WIDTH){1'b0}};
+    28              1                          1         reg signed [(CLKS_WIDTH - 1):0] clks_reg2 = {(CLKS_WIDTH){1'b0}};
+    29                                               
+    30                                                   wire signed [(MULT_WIDTH - 1):0] accum_owire;
+    31                                                   wire        [(CLKS_WIDTH - 1):0] clks_owire;
+    32                                               
+    33                                                   generate
+    34                                                       if (IN_REG_EN == 1'b1) begin: genblk_ireg1
+    35                                                           /* Input register */
+    36              1                          1                 reg signed [(MULT_WIDTH - 1):0] mult_ireg = {(MULT_WIDTH){1'b0}};
+    37              1                          1                 reg        [(CLKS_WIDTH - 1):0] clks_ireg = {(CLKS_WIDTH){1'b0}};
+    38              1                          1                 reg                             edge_ireg = 1'b0;
+    39                                                           
+    40              1                       1666                 always @(posedge CLK_I) begin
+    41                                                               if (N_RST_I == 1'b0) begin
+    42              1                          3                         mult_ireg <= {(MULT_WIDTH){1'b0}};
+    43              1                          3                         clks_ireg <= {(CLKS_WIDTH){1'b0}};
+    44              1                          3                         edge_ireg <= 1'b0;
+    45                                                               end else begin
+    46              1                       1663                         mult_ireg <= MULT_I;
+    47              1                       1663                         clks_ireg <= CLKS_I;
+    48              1                       1663                         edge_ireg <= DCLK_EDGE_DET_I;
+    49                                                               end
+    50                                                           end
+    51                                               
+    52                                                           assign mult_iwire = mult_ireg;
+    53                                                           assign clks_iwire = clks_ireg;
+    54                                                           assign edge_iwire = edge_ireg;
+    55                                                       end else begin: genblk_ireg0
+    56                                                           /* Through */
+    57                                                           assign mult_iwire = MULT_I;
+    58                                                           assign clks_iwire = CLKS_I;
+    59                                                           assign edge_iwire = DCLK_EDGE_DET_I;
+    60                                                       end
+    61                                                   endgenerate
+    62                                               
+    63              1                       1665         always @(posedge CLK_I) begin
+    64                                                       if (N_RST_I == 1'b0) begin
+    65              1                          3                 clks_reg1 <= {(CLKS_WIDTH){1'b0}};
+    66              1                          3                 clks_reg2 <= {(CLKS_WIDTH){1'b0}};
+    67                                                       end else begin
+    68              1                       1662                 clks_reg1 <= clks_iwire; 
+    69              1                       1662                 clks_reg2 <= clks_reg1;
+    70                                                       end
+    71                                                   end
+    72                                               
+    73              1                       1666         always @(posedge CLK_I) begin
+    74                                                       if (N_RST_I == 1'b0) begin
+    75              1                          3                 add_reg <= {(add_width){1'b0}};
+    76                                                       end else begin
+    77                                                           if (edge_iwire == 1'b1) begin
+    78              1                        415                     add_reg <= {{(MARGIN_WIDTH){mult_iwire[(MULT_WIDTH - 1)]}}, mult_iwire};
+    79                                                           end else begin
+    80              1                       1248                     add_reg <= add_reg + {{(MARGIN_WIDTH){mult_iwire[(MULT_WIDTH - 1)]}}, mult_iwire};
+    81                                                           end
+    82                                                       end
+    83                                                   end
+    84                                               
+    85              1                       1660         always @(posedge CLK_I) begin
+    86                                                       if (N_RST_I == 1'b0) begin
+    87              1                          3                 accum_reg <= {(MULT_WIDTH){1'b0}};
+    88                                                       end else begin
+    89                                                           if (edge_iwire == 1'b1) begin
+    90                                                               case (add_reg[(MULT_WIDTH - 1):(MULT_WIDTH - 2)])
+    91              1                        114                         2'b00  : accum_reg <= add_reg[(MULT_WIDTH - 1):0];
+    92              1                        102                         2'b01  : accum_reg <= {2'b00, {(MULT_WIDTH - 2){1'b1}}}; // Saturate to max value
+    93              1                        102                         2'b10  : accum_reg <= {2'b11, {(MULT_WIDTH - 2){1'b0}}}; // Saturate to min value
+    94              1                         97                         2'b11  : accum_reg <= add_reg[(MULT_WIDTH - 1):0];
+    95              1                    ***0***                         default: accum_reg <= add_reg[(MULT_WIDTH - 1):0];
+    96                                                               endcase
+    97                                                           end else begin
+    98              1                       1242                     accum_reg <= accum_reg;
+    99                                                           end
+    100                                                      end
+    101                                                  end
+    102                                                  
+    103                                                  generate
+    104                                                      if (OUT_REG_EN == 1'b1) begin: genblk_oreg1
+    105                                                          /* Output register */
+    106             1                          1                 reg signed [(MULT_WIDTH - 1):0] accum_oreg = {(MULT_WIDTH){1'b0}};
+    107             1                          1                 reg        [(CLKS_WIDTH - 1):0] clks_oreg  = {(CLKS_WIDTH){1'b0}};
+    108                                                          
+    109             1                       1661                 always @(posedge CLK_I) begin
+    110                                                              if (N_RST_I == 1'b0) begin
+    111             1                          3                         accum_oreg <= {(MULT_WIDTH){1'b0}};
+    112             1                          3                         clks_oreg  <= {(CLKS_WIDTH){1'b0}};
+    113                                                              end else begin
+    114             1                       1658                         accum_oreg <= accum_reg;
+    115             1                       1658                         clks_oreg  <= clks_reg2;
+    116                                                              end
+    117                                                          end
+    118                                              
+    119                                                          assign accum_owire = accum_oreg;
+    120                                                          assign clks_owire  = clks_oreg;
+    121                                                      end else begin: genblk_oreg0
+    122                                                          /* Through */
+    123                                                          assign accum_owire = accum_reg;
+    124                                                          assign clks_owire  = clks_reg2;
+    125                                                      end
+    126                                                  endgenerate
+    127                                              
+    128                                                  assign CLKS_O  = clks_owire;
+    129                                                  assign ACCUM_O = accum_owire;
+    130                                              endmodule
+    131                                              
+    132                                              `default_nettype wire
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        174       174         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for File ../../fireeee_accum_sync_reset.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+
+Total Node Count     =         87 
+Toggled Node Count   =         87 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (174 of 174 bins)
+
+
+Total Coverage By File (code coverage only, filtered view): 97.36%
+
