@@ -1,5 +1,5 @@
 # 🔥FIREEEE🔥
-![status](https://img.shields.io/badge/status-Spec_design-yellow)
+![status](https://img.shields.io/badge/status-Spec_under_revision-yellow)
 ![license](https://img.shields.io/badge/license-CERN--OHL--P_v2-blue)
 ![language](https://img.shields.io/badge/language-Verilog-blue)
 ![verification](https://img.shields.io/badge/hardware-not_tested-lightgrey)  
