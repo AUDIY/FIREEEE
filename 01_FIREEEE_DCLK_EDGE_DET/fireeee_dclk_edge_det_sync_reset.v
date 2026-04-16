@@ -3,9 +3,9 @@
 *
 * Data Clock Edge Detector Instance (Synchronous Reset Version.)
 *
-* Version: 0.02
+* Version: 0.03
 * Author : AUDIY
-* Date   : 2026/03/10
+* Date   : 2026/04/13
 *
 * Port
 *   Input
@@ -32,7 +32,7 @@
 | This source describes Open Hardware and is licensed under the CERN-OHL-P v2. |
 |                                                                              |
 | You may redistribute and modify this source and make products using it under |
-| the terms of the CERN-OHL-P v2 (https:/cern.ch/cern-ohl).                    |
+| the terms of the CERN-OHL-P v2 (https://cern.ch/cern-ohl).                   |
 |                                                                              |
 | This source is distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY,          |
 | INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A         |
