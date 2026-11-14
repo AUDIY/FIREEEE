@@ -23,8 +23,13 @@ The goal of this project is to provide a portable FIR filter architecture capabl
 ## Usage
 This is under construction.
 
-## Verified Devices
+## Verified devices
 This is under construction.
+
+## Module list
+|No.|Module name|Description|Specification|Source|
+|:-:|:-:|:-|:-:|:-:|
+|  1|||||
 
 ## FAQ
 ### 1. What is a “serial” FIR filter?
