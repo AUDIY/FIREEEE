@@ -32,7 +32,7 @@ Input data RAM controller.
 ![fireeee_ram_ctrl_summary](./fig/fireeee_ram_ctrl_summary.png)
 
 ## Timing chart
-TBD
+![fireeee_data_ram_ctrl_timing](./fig/fireeee_data_ram_ctrl.png)
 
 ## Module description
 TBD
