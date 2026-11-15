@@ -37,7 +37,7 @@ Input data RAM controller.
 ![fireeee_data_ram_ctrl_timing](./fig/fireeee_data_ram_ctrl.png)
 
 ### Oversample ratio = 2
-TBD
+![fireeee_data_ram_ctrl_timing2](./fig/fireeee_data_ram_ctrl2.png)
 
 ## Module description
 TBD
