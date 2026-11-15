@@ -18,7 +18,7 @@ Input data RAM controller.
 |:-|:-|
 |clk_i|Clock signal|
 |data_valid_i|Data input valid signal|
-|nreset_i|Asynchronous reset signal (Active LOW)|
+|nreset_i|Synchronous reset signal (Active LOW)|
 
 ### Output
 |Port|Description|
@@ -27,12 +27,17 @@ Input data RAM controller.
 |data_ram_waddr_o [DATA_RAM_ADDR_WIDTH-1:0]|Write address signal|
 |data_ram_re_o|Read enable signal|
 |data_ram_raddr_o [DATA_RAM_ADDR_WIDTH-1:0]|Read address signal|
+|data_valid_o|Data output valid signal|
 
 ## Block diagram
-![fireeee_ram_ctrl_summary](./fig/fireeee_ram_ctrl_summary.png)
+![fireeee_data_ram_ctrl_summary](./fig/fireeee_data_ram_ctrl_summary.png)
 
 ## Timing chart
+### Oversample ratio = 1
 ![fireeee_data_ram_ctrl_timing](./fig/fireeee_data_ram_ctrl.png)
+
+### Oversample ratio = 2
+TBD
 
 ## Module description
 TBD
