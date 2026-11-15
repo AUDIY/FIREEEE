@@ -24,7 +24,7 @@
 |clk_i|Clock signal|
 |data_valid_i|Data input valid signal|
 |data_i [IN_DATA_WIDTH-1:0]|Data input signal|
-|nreset_i|Asynchronous reset signal (Active LOW)|
+|nreset_i|Synchronous reset signal (Active LOW)|
 
 ### Output
 |Port|Description|

@@ -23,7 +23,7 @@ Multiplier
 |data_valid_i|Data input valid signal|
 |data_i [IN_DATA_WIDTH-1:0]|Data input signal|
 |coef_i [COEF_WIDTH-1:0]|Filter coefficient signal|
-|nreset_i|Synchronous Reset (active LOW)|
+|nreset_i|Synchronous Reset signal (active LOW)|
 
 ### Output
 |Port|Description|

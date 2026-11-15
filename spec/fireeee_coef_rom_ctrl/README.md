@@ -18,6 +18,7 @@ Filter coefficient ROM controller
 |:-|:-|
 |clk_i|Clck signal|
 |data_valid_i|Data input valid signal|
+|nreset_i|Synchronous reset signal (Active LOW)|
 
 ### Output
 |Port|Description|
