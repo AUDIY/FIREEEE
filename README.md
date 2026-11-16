@@ -23,8 +23,16 @@ The goal of this project is to provide a portable FIR filter architecture capabl
 ## Usage
 This is under construction.
 
-## Verified Devices
+## Verified devices
 This is under construction.
+
+## Module list
+|No.|Module name|Description|Specification|Source|
+|:-:|:-|:-|:-|:-|
+|  1|fireeee_data_ram_ctrl|Input data RAM controller|[fireeee_data_ram_ctrl](./spec/fireeee_data_ram_ctrl/README.md)||
+|  2|fireeee_coef_rom_ctrl|Filter coefficient ROM controller|[fireeee_coef_rom_ctrl](./spec/fireeee_coef_rom_ctrl/README.md)||
+|  3|fireeee_mult|Multiplier|[fireeee_mult](./spec/fireeee_mult/README.md)||
+|  4|fireeee_accum|Accumulator|[fireeee_accum](./spec/fireeee_accum/README.md)||
 
 ## FAQ
 ### 1. What is a “serial” FIR filter?
